@@ -58,4 +58,4 @@ case $yn in
     * );;
 esac
 
-echo Done.
+nvim
