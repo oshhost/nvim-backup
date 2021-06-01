@@ -31,7 +31,7 @@ case $yn in
     [Yy]* )
         mkdir -p ~/.config/nvim/
         if hash wget 2>/dev/null; then
-            wget -P ~/.config/nvim/ -O init.vim $url
+            wget -O ~/.config/nvim/init.vim $url
         elif hash curl 2>/dev/null; then
             curl -o ~/.config/nvim/init.vim $url
             echo 1
