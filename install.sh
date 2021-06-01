@@ -11,7 +11,7 @@ if ! hash nvim 2>/dev/null; then
         "arch"* )
             yes | sudo pacman -S neovim
         ;;
-        *)
+        * )
             echo The system is not supported.
             exit 1
     esac
@@ -23,8 +23,7 @@ case $yn in
         sudo ln -s /bin/nvim /bin/vi
         sudo ln -s /bin/nvim /bin/vim
         ;;
-    * ) break
-        ;;
+    * );;
 esac
 
 read -p "Do you want install custom init.vim? [y/N]" yn
@@ -49,16 +48,14 @@ case $yn in
                         ;;
                     esac
                     ;;
-                * ) break
-                    ;;
+                * );;
             esac
             if hash wget 2>/dev/null; then
                 wget -P ~/.config/nvim/ -O init.vim $url
             fi
         fi
         ;;
-    * ) break
-        ;;
+    * );;
 esac
 
 echo Done.
