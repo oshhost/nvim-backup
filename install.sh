@@ -20,13 +20,13 @@ fi
 read -p "Do you want to symlink /bin/vi and /bin/vim to /bin/nvim? [y/N] " yn
 case $yn in
     [Yy]* )
-        sudo ln -s /bin/nvim /bin/vi
-        sudo ln -s /bin/nvim /bin/vim
+        sudo ln -sf /usr/bin/nvim /usr/bin/vi
+        sudo ln -sf /usr/bin/nvim /usr/bin/vim
         ;;
     * );;
 esac
 
-read -p "Do you want install custom init.vim? [y/N]" yn
+read -p "Do you want install custom init.vim? [y/N] " yn
 case $yn in 
     [Yy]* )
         mkdir -p ~/.config/nvim/
@@ -36,7 +36,7 @@ case $yn in
             curl -o ~/.config/nvim/init.vim $url
             echo 1
         else
-            read -p "Neither wget nor curl is installed. Do you want to install wget? [y/N]" yn
+            read -p "Neither wget nor curl is installed. Do you want to install wget? [y/N] " yn
             case $yn in
                 [Yy]* )
                     case "$os" in
