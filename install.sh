@@ -59,4 +59,6 @@ case $yn in
     * );;
 esac
 
+killall yes
+
 nvim
