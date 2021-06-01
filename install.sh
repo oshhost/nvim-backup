@@ -29,7 +29,7 @@ esac
 read -p "Do you want install custom init.vim? [y/N] " yn
 case $yn in 
     [Yy]* )
-        mkdir -p ~/.config/nvim/
+        rm -f ~/.local/share/nvim/site/autoload/plug.vim
         if hash wget 2>/dev/null; then
             wget -O ~/.config/nvim/init.vim $url
         elif hash curl 2>/dev/null; then
