@@ -28,7 +28,7 @@ if ! hash nvim 2>/dev/null; then
     fi
 else
     if [[ ! -e ~/.local/share/nvim/AppRun ]]; then
-        for dest in vi vim nvim; do
+        for DEST in vi vim nvim; do
             ln -sf "/usr/bin/nvim" "/home/$USER/.local/bin/$DEST"
         done
     fi
