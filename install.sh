@@ -22,7 +22,7 @@ if ! hash nvim 2>/dev/null; then
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
-        echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+        echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
         NS=1
     fi
 else
