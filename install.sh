@@ -1,16 +1,15 @@
 #!/bin/bash
 URL="https://raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 
-mkdir -p ~/.config/nvim
 mkdir -p ~/.local/bin
-mkdir -p ~/.local/share/nvim
+mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload
 
 if ! hash nvim 2>/dev/null; then
     if [[ ! -e ~/.local/share/nvim/AppRun ]]; then
         DIR=$PWD
         cd ~/.local/share
         echo Downloading Neovim...
-        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
         ./nvim.appimage --appimage-extract
         rm nvim.appimage
@@ -23,7 +22,7 @@ if ! hash nvim 2>/dev/null; then
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
-        echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+        echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
         NS=1
     fi
 else
@@ -36,16 +35,19 @@ fi
 
 if [[ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]]; then
     echo Downloading plug.vim...
-    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    wget -O "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 if ! hash node 2>/dev/null; then
     echo Downloading Node.js...
-    curl -L install-node.now.sh/lts | FORCE=1 PREFIX=$HOME/.local bash
+    wget -O- install-node.now.sh/lts | FORCE=1 PREFIX=$HOME/.local bash
 fi
 
-echo Downloading init.vim...
-curl -o ~/.config/nvim/init.vim $URL
+if [[ ! -e ~/.config/nvim/init.vim ]]; then
+    mkdir -p ~/.config/nvim
+    echo Downloading init.vim...
+    wget -O ~/.config/nvim/init.vim $URL
+fi
 
 if [[ -z "$NS" ]]; then
     nvim +'PlugInstall --sync|source $MYVIMRC'
