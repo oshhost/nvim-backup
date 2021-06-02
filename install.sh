@@ -1,7 +1,7 @@
 #!/bin/bash
 URL="https://raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 
-mkdir -p ~/.config/nvim/
+mkdir -p ~/.config/nvim
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/nvim
 
