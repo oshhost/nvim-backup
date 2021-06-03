@@ -1,5 +1,7 @@
 #!/bin/bash
-URL="https://raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
+URL="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
+GIT="raw.githubusercontent.com/oshhost/nvim-backup/main/git"
+NODE="install-node.now.sh/lts"
 
 mkdir -p ~/.local/bin
 mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload
@@ -33,6 +35,15 @@ else
     fi
 fi
 
+if ! hash git 2>/dev/null; then
+    echo Downloading git...
+    DIR=$PWD
+    cd ~/.local/bin
+    wget $GIT
+    chmod +x git
+    cd $DIR
+fi
+
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
     echo Downloading plug.vim...
     wget -O "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -40,7 +51,7 @@ fi
 
 if ! hash node 2>/dev/null; then
     echo Downloading Node.js...
-    wget -O- install-node.now.sh/lts | FORCE=1 PREFIX=$HOME/.local bash
+    wget -O- $NODE | FORCE=1 PREFIX=$HOME/.local bash
 fi
 
 if [ ! -e ~/.config/nvim/init.vim ]; then
