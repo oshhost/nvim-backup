@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plugged')
+silent! call plug#begin('~/.config/nvim/plugged')
 
 Plug 'mhinz/vim-startify'
 
@@ -193,7 +193,7 @@ set mouse=a
 set clipboard+=unnamedplus
 
 set termguicolors
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 hi NonText guifg=DarkGray
 hi Normal guibg=NONE
