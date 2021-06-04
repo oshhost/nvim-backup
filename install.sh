@@ -19,22 +19,22 @@ if ! hash nvim 2>/dev/null; then
         echo Moving content to ~/.local/share/nvim
         mv squashfs-root/* ~/.local/share/nvim
         rm -rf squashfs-root
+        echo Symlinking vi and vim to nvim... You might want to change this behaviour.
         for DEST in vi vim nvim; do
-            echo Symlinking vi and vim to nvim... You might want to change this behaviour.
-            ln -sf "/home/$USER/.local/share/nvim/AppRun" "/home/$USER/.local/bin/$DEST"
+            ln -sf "/home/$USER/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
         done
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
-        echo Prepending ~/.local/bin to PATH... You might want to change this behaviour.
+        echo Prepending ~/.local/bin to PATH \(~/.bashrc\)... You might want to change this behaviour.
         echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
         NS=1
     fi
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
+        echo Symlinking vi and vim to nvim... You might want to change this behaviour.
         for DEST in vi vim nvim; do
-            echo Symlinking vi and vim to nvim... You might want to change this behaviour.
-            ln -sf "/usr/bin/nvim" "/home/$USER/.local/bin/$DEST"
+            ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
         done
     fi
 fi
@@ -69,7 +69,7 @@ fi
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
-    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=$HOME/.local bash >/dev/null
+    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null
 fi
 
 if [ -z "$NS" ]; then
