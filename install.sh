@@ -11,7 +11,7 @@ if ! hash nvim 2>/dev/null; then
         DIR=$PWD
         cd /tmp
         echo Downloading Neovim...
-        wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        wget -q https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
         ./nvim.appimage --appimage-extract
         rm nvim.appimage
@@ -37,12 +37,12 @@ fi
 
 if [ ! -e ~/.config/nvim/init.vim ]; then
     echo Downloading init.vim...
-    wget -O ~/.config/nvim/init.vim $INIT
+    wget --show-progress -qO ~/.config/nvim/init.vim $INIT
 fi
 
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
     echo Downloading plug.vim...
-    wget -O ~/.local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 if ! hash git 2>/dev/null; then
@@ -50,7 +50,7 @@ if ! hash git 2>/dev/null; then
     cd ~/.config/nvim/plugged
     echo Git not found. Downloading plugins via wget... 
     cat ~/.config/nvim/init.vim | grep "Plug '" | sed -e "s/^.*Plug [']//" -e "s/'.*//" | grep -v git | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do wget --show-progress -qO $OUT github.com/$REP/tarball/master; done
-    ls | grep .tgz$ | while read TAR; do tar xfv $TAR; done
+    ls | grep .tgz$ | while read TAR; do tar xf $TAR; done
     rm *.tgz
     ls | while read REP; do mv $REP $(echo $REP | sed -e "s/^[^-]*-//" -e "s/\(.*\)-.*/\1/"); done
     cd $DIR
@@ -58,11 +58,11 @@ fi
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
-    wget -O- $NODE | FORCE=1 PREFIX=$HOME/.local bash
+    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=$HOME/.local bash
 fi
 
 if [ -z "$NS" ]; then
     nvim +'PlugInstall --sync|source $MYVIMRC'
 else
-    ~/.local/bin/nvim +'PlugInstall --sync|source $MYVIMRC'
+    bash -c "source ~/.bashrc && nvim +'PlugInstall --sync|source $MYVIMRC'"
 fi
