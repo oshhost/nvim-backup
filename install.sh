@@ -28,7 +28,7 @@ if ! hash nvim 2>/dev/null; then
     if ! hash nvim 2>/dev/null; then
         echo Prepending ~/.local/bin to PATH \(~/.bashrc\)... You might want to change this behaviour.
         echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-        NS=1
+        PATH=$HOME/.local/bin:$PATH
     fi
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
@@ -71,10 +71,6 @@ fi
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
     wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
-fi
-
-if [ ! -z "$NS" ]; then
-    PATH=$HOME/.local/bin:$PATH
 fi
 
 if [ -z "$NO_GIT" ]; then
