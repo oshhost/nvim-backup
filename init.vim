@@ -19,7 +19,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'rust-lang/rust.vim'
-" Plug 'udalov/kotlin-vim'
+"'udalov/kotlin-vim'
 
 Plug 'morhetz/gruvbox' 
 
