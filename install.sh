@@ -50,7 +50,7 @@ if ! hash git 2>/dev/null; then
         DIR=$PWD
         cd ~/.config/nvim/plugged
         echo Git not found. Downloading plugins via wget... 
-        cat ~/.config/nvim/init.vim | grep "Plug '" | sed -e "s/^.*Plug [']//" -e "s/'.*//" | grep -v git | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do wget --show-progress -qO $OUT github.com/$REP/tarball/master; done
+        cat ~/.config/nvim/init.vim | grep "Plug '" | sed -e "s/^.*Plug [']//" -e "s/'.*//" | grep -v git | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do if [ "$REP" = "neoclide/coc.nvim" ]; then REF=release; else REF=master; fi; wget --show-progress -qO $OUT github.com/$REP/tarball/$REF; done
         ls | grep .tgz$ | while read TAR; do tar xf $TAR; done
         rm *.tgz
         ls | while read REP; do mv $REP $(echo $REP | sed -e "s/^[^-]*-//" -e "s/\(.*\)-.*/\1/"); done
@@ -62,7 +62,7 @@ fi
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
-    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=$HOME/.local bash
+    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=$HOME/.local bash >/dev/null
 fi
 
 if [ -z "$NS" ]; then
@@ -70,3 +70,5 @@ if [ -z "$NS" ]; then
 else
     bash -c "source ~/.bashrc && nvim +'PlugInstall --sync|source $MYVIMRC'"
 fi
+
+echo Done.
