@@ -75,13 +75,13 @@ fi
 
 if [ -z "$NS" ]; then
     if [ -z "$NO_GIT" ]; then
-        nvim +'PlugInstall --sync | source $MYVIMRC'
+        nvim '+PlugInstall --sync | source $MYVIMRC'
     else
         nvim
     fi
 else
     if [ -z "$NO_GIT" ]; then
-        bash -c "PATH=$HOME/.local/bin:$PATH nvim +'PlugInstall --sync | source $MYVIMRC'"
+        bash -c "PATH=$HOME/.local/bin:$PATH nvim '+PlugInstall --sync | source $MYVIMRC'"
     else
         bash -c "PATH=$HOME/.local/bin:$PATH nvim"
     fi
