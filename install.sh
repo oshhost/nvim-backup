@@ -11,7 +11,7 @@ if ! hash nvim 2>/dev/null; then
         DIR=$PWD
         cd /tmp
         echo Downloading Neovim...
-        wget --show-progress -q https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+        wget --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
         echo Extracting...
         ./nvim.appimage --appimage-extract >/dev/null
@@ -46,7 +46,7 @@ fi
 
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
     echo Downloading plug.vim...
-    wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 if ! hash git 2>/dev/null; then
