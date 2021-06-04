@@ -73,16 +73,13 @@ if ! hash node 2>/dev/null; then
     wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
 fi
 
-if [ -z "$NS" ]; then
-    if [ -z "$NO_GIT" ]; then
-        nvim '+PlugInstall --sync | source $MYVIMRC'
-    else
-        nvim
-    fi
+if [ ! -z "$NS" ]; then
+    PATH=$HOME/.local/bin:$PATH
+fi
+
+if [ -z "$NO_GIT" ]; then
+    nvim +'PlugInstall --sync|q|q'
+    nvim
 else
-    if [ -z "$NO_GIT" ]; then
-        bash -c "PATH=$HOME/.local/bin:$PATH nvim '+PlugInstall --sync | source $MYVIMRC'"
-    else
-        bash -c "PATH=$HOME/.local/bin:$PATH nvim"
-    fi
+    nvim
 fi
