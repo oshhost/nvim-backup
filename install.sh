@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 NODE="install-node.now.sh/lts"
 
@@ -95,4 +95,4 @@ echo
 if [ -z "$NO_GIT" ]; then
     nvim +'PlugInstall --sync|q|q'
 fi
-nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])"
+nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil!Startify"
