@@ -13,23 +13,27 @@ if ! hash nvim 2>/dev/null; then
         echo Downloading Neovim...
         wget --show-progress -q https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
+        echo Extracting...
         ./nvim.appimage --appimage-extract >/dev/null
         rm nvim.appimage
-        shopt -s dotglob
+        echo Moving content to ~/.local/share/nvim
         mv squashfs-root/* ~/.local/share/nvim
-        rmdir squashfs-root
+        rm -rf squashfs-root
         for DEST in vi vim nvim; do
+            echo Symlinking vi and vim to nvim... You might want to change this behaviour.
             ln -sf "/home/$USER/.local/share/nvim/AppRun" "/home/$USER/.local/bin/$DEST"
         done
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
+        echo Prepending ~/.local/bin to PATH... You might want to change this behaviour.
         echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
         NS=1
     fi
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
         for DEST in vi vim nvim; do
+            echo Symlinking vi and vim to nvim... You might want to change this behaviour.
             ln -sf "/usr/bin/nvim" "/home/$USER/.local/bin/$DEST"
         done
     fi
@@ -46,13 +50,16 @@ if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
 fi
 
 if ! hash git 2>/dev/null; then
+    NO_GIT=1
     if [ -z "$(ls -A ~/.config/nvim/plugged)" ]; then
         DIR=$PWD
         cd ~/.config/nvim/plugged
         echo Git not found. Downloading plugins via wget... 
         cat ~/.config/nvim/init.vim | grep "Plug '" | sed -e "s/^.*Plug [']//" -e "s/'.*//" | grep -v git | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do if [ "$REP" = "neoclide/coc.nvim" ]; then REF=release; else REF=master; fi; wget --show-progress -qO $OUT github.com/$REP/tarball/$REF; done
+        echo Untaring...
         ls | grep .tgz$ | while read TAR; do tar xf $TAR; done
         rm *.tgz
+        echo Renaming...
         ls | while read REP; do mv $REP $(echo $REP | sed -e "s/^[^-]*-//" -e "s/\(.*\)-.*/\1/"); done
         cd $DIR
     else
@@ -66,9 +73,17 @@ if ! hash node 2>/dev/null; then
 fi
 
 if [ -z "$NS" ]; then
-    nvim +'PlugInstall --sync|source $MYVIMRC'
+    if [ -z "$NO_GIT" ]; then
+        nvim +'PlugInstall --sync|source $MYVIMRC'
+    else
+        nvim
+    fi
 else
-    bash -c "source ~/.bashrc && nvim +'PlugInstall --sync|source $MYVIMRC'"
+    if [ -z "$NO_GIT" ]; then
+        bash -c "source ~/.bashrc && nvim +'PlugInstall --sync|source $MYVIMRC'"
+    else
+        bash -c "source ~/.bashrc && nvim"
+    fi
 fi
 
 echo Done.
