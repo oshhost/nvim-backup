@@ -2,6 +2,16 @@
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 NODE="install-node.now.sh/lts"
 
+echo
+echo -e "\033[0;34mooooo      ooo\033[0;32m                                 o8o"
+echo -e "\033[0;34m\`888b.     \`8'\033[0;32m                                 \`\"'"
+echo -e "\033[0;34m 8 \`88b.    8   .ooooo.   .ooooo.\033[0;32m oooo    ooo oooo  ooo. .oo.  .oo."
+echo -e "\033[0;34m 8   \`88b.  8  d88' \`88b d88' \`88b\033[0;32m \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b"
+echo -e "\033[0;34m 8     \`88b.8  888ooo888 888   888\033[0;32m  \`88..8'    888   888   888   888"
+echo -e "\033[0;34m 8       \`888  888    .o 888   888\033[0;32m   \`888'     888   888   888   888"
+echo -e "\033[0;34mo8o        \`8  \`Y8bod8P' \`Y8bod8P'\033[0;32m    \`8'     o888o o888o o888o o888o\033[0m"
+echo
+
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/nvim/site/autoload
 mkdir -p ~/.config/nvim/plugged
@@ -19,34 +29,37 @@ if ! hash nvim 2>/dev/null; then
         echo Moving content to ~/.local/share/nvim...
         mv squashfs-root/* ~/.local/share/nvim
         rm -rf squashfs-root
-        echo Symlinking vi and vim to nvim... You might want to change this behaviour.
+        echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
         for DEST in vi vim nvim; do
             ln -sf "$HOME/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
         done
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
-        echo Prepending ~/.local/bin to PATH \(~/.bashrc\)... You might want to change this behaviour.
+        echo Prepending ~/.local/bin to PATH \(~/.bashrc\)... You might want to change this behaviour manually.
         echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
         PATH=$HOME/.local/bin:$PATH
     fi
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
-        echo Symlinking vi and vim to nvim... You might want to change this behaviour.
+        echo Symlinking vi and vim to nvim... You might want to change this behaviour manually.
         for DEST in vi vim nvim; do
             ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
         done
     fi
 fi
+echo
 
 if [ ! -e ~/.config/nvim/init.vim ]; then
     echo Downloading init.vim...
     wget --show-progress -qO ~/.config/nvim/init.vim $INIT
+    echo
 fi
 
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
     echo Downloading plug.vim...
     wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo
 fi
 
 if ! hash git 2>/dev/null; then
@@ -67,15 +80,19 @@ if ! hash git 2>/dev/null; then
         echo ~/.config/nvim/plugged already contains some files. Assuming the plugins are installed...
     fi
 fi
+echo
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
     wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
+    echo
 fi
+
+echo The installation is complete.
+sleep 1
+echo
 
 if [ -z "$NO_GIT" ]; then
     nvim +'PlugInstall --sync|q|q'
-    nvim
-else
-    nvim
 fi
+nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])"
