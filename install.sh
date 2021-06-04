@@ -63,7 +63,7 @@ if ! hash git 2>/dev/null; then
         ls | while read REP; do mv $REP $(echo $REP | sed -e "s/^[^-]*-//" -e "s/\(.*\)-.*/\1/"); done
         cd $DIR
     else
-        echo ~/.config/nvim/plugged already contain some files. Assuming the plugins are installed...
+        echo ~/.config/nvim/plugged already contains some files. Assuming the plugins are installed...
     fi
 fi
 
@@ -80,9 +80,9 @@ if [ -z "$NS" ]; then
     fi
 else
     if [ -z "$NO_GIT" ]; then
-        bash -c "source ~/.bashrc && nvim +'PlugInstall --sync|source $MYVIMRC'"
+        bash -c "PATH=$HOME/.local/bin:$PATH nvim +'PlugInstall --sync|source $MYVIMRC'"
     else
-        bash -c "source ~/.bashrc && nvim"
+        bash -c "PATH=$HOME/.local/bin:$PATH nvim"
     fi
 fi
 
