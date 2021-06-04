@@ -21,7 +21,7 @@ if ! hash nvim 2>/dev/null; then
         rm -rf squashfs-root
         echo Symlinking vi and vim to nvim... You might want to change this behaviour.
         for DEST in vi vim nvim; do
-            ln -sf "/home/$USER/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
+            ln -sf "$HOME/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
         done
         cd $DIR
     fi
