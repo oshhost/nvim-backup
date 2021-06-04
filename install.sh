@@ -69,7 +69,7 @@ fi
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
-    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null
+    wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
 fi
 
 if [ -z "$NS" ]; then

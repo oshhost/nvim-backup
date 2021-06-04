@@ -40,9 +40,9 @@ let g:coc_global_extensions = [
 	\ 'coc-rust-analyzer',
 	\ 'coc-go',
 	\ 'coc-sh',
-	" \ 'coc-kotlin',
 	\ 'coc-calc'
   \ ]
+    " \ 'coc-kotlin',
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
