@@ -19,7 +19,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'rust-lang/rust.vim'
-Plug 'udalov/kotlin-vim'
+" Plug 'udalov/kotlin-vim'
 
 Plug 'morhetz/gruvbox' 
 
@@ -40,7 +40,7 @@ let g:coc_global_extensions = [
 	\ 'coc-rust-analyzer',
 	\ 'coc-go',
 	\ 'coc-sh',
-	\ 'coc-kotlin',
+	" \ 'coc-kotlin',
 	\ 'coc-calc'
   \ ]
 
