@@ -79,8 +79,8 @@ if ! hash git 2>/dev/null; then
     else
         echo ~/.config/nvim/plugged already contains some files. Assuming the plugins are installed...
     fi
+    echo
 fi
-echo
 
 if ! hash node 2>/dev/null; then
     echo Installing Node.js...
