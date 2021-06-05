@@ -1,5 +1,7 @@
 #!/bin/sh
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
+UNINSTALL="raw.githubusercontent.com/oshhost/nvim-backup/main/uninstall-nvim.sh"
+UPDATE="raw.githubusercontent.com/oshhost/nvim-backup/main/update-nvim.sh"
 NODE="install-node.now.sh/lts"
 
 CB=$(tput setaf 4);CG=$(tput setaf 2);CD=$(tput sgr0)
@@ -34,6 +36,10 @@ if ! hash nvim 2>/dev/null; then
         for DEST in vi vim nvim; do
             ln -sf "$HOME/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
         done
+        cd ~/.local/bin
+        echo To uninstall and update neovim, use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
+        wget $UNINSTALL $UPDATE
+        chmod +x uninstall-nvim.sh update-nvim.sh
         cd $DIR
     fi
     if ! hash nvim 2>/dev/null; then
@@ -92,9 +98,8 @@ fi
 echo The installation is complete. && sleep 1 && echo
 
 ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
-
 if [ -z "$NO_GIT" ]; then
-    nvim +'PlugInstall --sync|q!|q!'; nvim +"$ARG"
+    nvim +'PlugInstall --sync|q|q'; nvim +"$ARG"
 else
     nvim +"$ARG"
 fi
