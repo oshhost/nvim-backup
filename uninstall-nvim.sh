@@ -9,6 +9,8 @@ case $yn in
                 rm ~/.local/bin/vi ~/.local/bin/vim ~/.local/bin/nvim
                 echo Removing data and config files...
                 rm -rf ~/.local/share/nvim ~/.config/nvim ~/.config/coc
+                echo Removing scripts...
+                rm ~/.local/bin/update-nvim.sh ~/.local/bin/uninstall-nvim.sh
         esac
         ;;
 esac
