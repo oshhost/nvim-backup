@@ -65,7 +65,7 @@ let g:lightline = {
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 nmap <C-q> :NERDTreeToggle<CR>
-nmap <A-u> :UndotreeToggle<CR>
+nmap <A-u> :UndotreeToggle<CR><C-w>j
 vmap == <plug>NERDCommenterToggle
 nmap == <plug>NERDCommenterToggle
 noremap <plug>(slash-after) zz
