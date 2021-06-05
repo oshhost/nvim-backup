@@ -38,7 +38,7 @@ if ! hash nvim 2>/dev/null; then
         done
         cd ~/.local/bin
         echo To uninstall and update neovim, use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
-        wget $UNINSTALL $UPDATE
+        wget --show-progress -q $UNINSTALL $UPDATE
         chmod +x uninstall-nvim.sh update-nvim.sh
         cd $DIR
     fi
