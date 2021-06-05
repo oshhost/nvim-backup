@@ -3,7 +3,6 @@ INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 NODE="install-node.now.sh/lts"
 
 CB=$(tput setaf 4);CG=$(tput setaf 2);CD=$(tput sgr0)
-
 echo
 echo "${CB}ooooo      ooo${CG}                                 o8o"
 echo "${CB}\`888b.     \`8'${CG}                                 \`\"'"
@@ -90,11 +89,12 @@ if ! hash node 2>/dev/null; then
     echo
 fi
 
-echo The installation is complete.
-sleep 1
-echo
+echo The installation is complete. && sleep 1 && echo
+
+ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
 
 if [ -z "$NO_GIT" ]; then
-    nvim +'PlugInstall --sync|q!|q!'
+    nvim +'PlugInstall --sync|q!|q!'; nvim +$ARG
+else
+    nvim +$ARG
 fi
-nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
