@@ -3,13 +3,13 @@ INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 NODE="install-node.now.sh/lts"
 
 echo
-echo "\033[0;34mooooo      ooo\033[0;32m                                 o8o"
-echo "\033[0;34m\`888b.     \`8'\033[0;32m                                 \`\"'"
-echo "\033[0;34m 8 \`88b.    8   .ooooo.   .ooooo.\033[0;32m oooo    ooo oooo  ooo. .oo.  .oo."
-echo "\033[0;34m 8   \`88b.  8  d88' \`88b d88' \`88b\033[0;32m \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b"
-echo "\033[0;34m 8     \`88b.8  888ooo888 888   888\033[0;32m  \`88..8'    888   888   888   888"
-echo "\033[0;34m 8       \`888  888    .o 888   888\033[0;32m   \`888'     888   888   888   888"
-echo "\033[0;34mo8o        \`8  \`Y8bod8P' \`Y8bod8P'\033[0;32m    \`8'     o888o o888o o888o o888o\033[0m"
+echo "$(tput setaf 4)ooooo      ooo$(tput setaf 2)                                 o8o"
+echo "$(tput setaf 4)\`888b.     \`8'$(tput setaf 2)                                 \`\"'"
+echo "$(tput setaf 4) 8 \`88b.    8   .ooooo.   .ooooo.$(tput setaf 2) oooo    ooo oooo  ooo. .oo.  .oo."
+echo "$(tput setaf 4) 8   \`88b.  8  d88' \`88b d88' \`88b$(tput setaf 2) \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b"
+echo "$(tput setaf 4) 8     \`88b.8  888ooo888 888   888$(tput setaf 2)  \`88..8'    888   888   888   888"
+echo "$(tput setaf 4) 8       \`888  888    .o 888   888$(tput setaf 2)   \`888'     888   888   888   888"
+echo "$(tput setaf 4)o8o        \`8  \`Y8bod8P' \`Y8bod8P'$(tput setaf 2)    \`8'     o888o o888o o888o o888o$(tput sgr0)"
 echo
 
 mkdir -p ~/.local/bin
