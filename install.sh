@@ -94,7 +94,7 @@ echo The installation is complete. && sleep 1 && echo
 ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
 
 if [ -z "$NO_GIT" ]; then
-    nvim +'PlugInstall --sync|q!|q!'; nvim +$ARG
+    nvim +'PlugInstall --sync|q!|q!'; nvim +"$ARG"
 else
-    nvim +$ARG
+    nvim +"$ARG"
 fi
