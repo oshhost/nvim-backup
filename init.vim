@@ -8,6 +8,7 @@ Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'mbbill/undotree'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
@@ -15,6 +16,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
+Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'junegunn/vim-slash'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -60,8 +65,10 @@ let g:lightline = {
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 nmap <C-q> :NERDTreeToggle<CR>
+nmap <A-u> :UndotreeToggle<CR>
 vmap == <plug>NERDCommenterToggle
 nmap == <plug>NERDCommenterToggle
+noremap <plug>(slash-after) zz
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -99,6 +106,9 @@ endfunction
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
@@ -126,7 +136,6 @@ vnoremap c "_c
 nnoremap X "_x
 vnoremap X "_x
 
-nnoremap <C-l> :noh<CR><C-l>
 inoremap <C-e> <ESC>
 
 nnoremap <C-s> :up<CR>
@@ -151,6 +160,7 @@ tnoremap <A-c> <C-\><C-N>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
 nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
+autocmd TermOpen * setlocal nonu
 
 tnoremap <ESC> <C-\><C-N>
 tnoremap <A-h> <C-\><C-N><C-w>h
