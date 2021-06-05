@@ -212,3 +212,4 @@ hi CocInfoSign guifg=Green
 hi CocHintSign guibg=NONE
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command Q q
