@@ -2,14 +2,16 @@
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 NODE="install-node.now.sh/lts"
 
+CB=$(tput setaf 4);CG=$(tput setaf 2);CD=$(tput sgr0)
+
 echo
-echo "$(tput setaf 4)ooooo      ooo$(tput setaf 2)                                 o8o"
-echo "$(tput setaf 4)\`888b.     \`8'$(tput setaf 2)                                 \`\"'"
-echo "$(tput setaf 4) 8 \`88b.    8   .ooooo.   .ooooo.$(tput setaf 2) oooo    ooo oooo  ooo. .oo.  .oo."
-echo "$(tput setaf 4) 8   \`88b.  8  d88' \`88b d88' \`88b$(tput setaf 2) \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b"
-echo "$(tput setaf 4) 8     \`88b.8  888ooo888 888   888$(tput setaf 2)  \`88..8'    888   888   888   888"
-echo "$(tput setaf 4) 8       \`888  888    .o 888   888$(tput setaf 2)   \`888'     888   888   888   888"
-echo "$(tput setaf 4)o8o        \`8  \`Y8bod8P' \`Y8bod8P'$(tput setaf 2)    \`8'     o888o o888o o888o o888o$(tput sgr0)"
+echo "${CB}ooooo      ooo${CG}                                 o8o"
+echo "${CB}\`888b.     \`8'${CG}                                 \`\"'"
+echo "${CB} 8 \`88b.    8   .ooooo.   .ooooo.${CG} oooo    ooo oooo  ooo. .oo.  .oo."
+echo "${CB} 8   \`88b.  8  d88' \`88b d88' \`88b${CG} \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b"
+echo "${CB} 8     \`88b.8  888ooo888 888   888${CG}  \`88..8'    888   888   888   888"
+echo "${CB} 8       \`888  888    .o 888   888${CG}   \`888'     888   888   888   888"
+echo "${CB}o8o        \`8  \`Y8bod8P' \`Y8bod8P'${CG}    \`8'     o888o o888o o888o o888o${CD}"
 echo
 
 mkdir -p ~/.local/bin
@@ -95,4 +97,4 @@ echo
 if [ -z "$NO_GIT" ]; then
     nvim +'PlugInstall --sync|q|q'
 fi
-nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil!Startify"
+nvim +"let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
