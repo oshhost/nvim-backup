@@ -150,18 +150,6 @@ nnoremap <A-]> :set nolist<CR>
 
 nnoremap <A-s> :set syntax=
 
-nnoremap <A-a> :badd 
-nnoremap <A-n> :bn<CR>
-nnoremap <A-b> :bp<CR>
-nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
-tnoremap <A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
-nnoremap <A-c> :clo<CR>
-tnoremap <A-c> <C-\><C-N>:bd!<CR>
-
-nnoremap <A-o> <C-w>o
-nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
-autocmd TermOpen * setlocal nonu
-
 tnoremap <ESC> <C-\><C-N>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -175,6 +163,22 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+
+nnoremap <A-a> :badd 
+nnoremap <A-n> :bn<CR>
+nnoremap <A-b> :bp<CR>
+nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
+nnoremap <A-c> :clo<CR>
+
+tmap <A-a> <ESC>:badd 
+tmap <A-n> <ESC>:bn<CR>
+tmap <A-b> <ESC>:bp<CR>
+tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
+tmap <A-c> <ESC>:bd!<CR>
+
+nnoremap <A-o> <C-w>o
+nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
+autocmd TermOpen * setlocal nonu
 
 set updatetime=300
 
@@ -212,4 +216,4 @@ hi CocInfoSign guifg=Green
 hi CocHintSign guibg=NONE
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-command Q q
+command! Q q
