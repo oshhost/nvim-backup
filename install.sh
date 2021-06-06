@@ -78,10 +78,8 @@ if ! hash git 2>/dev/null; then
         echo Skipping plugins containing the \'git\' substring...
         cat ~/.config/nvim/init.vim | grep "Plug '" | grep -v git | sed -e "s/^.*Plug [']//" -e "s/'.*//" | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do if [ "$REP" = "neoclide/coc.nvim" ]; then REF=release; else REF=master; fi; wget --show-progress -qO $OUT github.com/$REP/tarball/$REF; done
         echo Extracting...
-        ls | grep .tgz$ | while read TAR; do tar xf $TAR; done
+        ls | grep .tgz$ | while read TAR; do TE=${TAR%.tgz}; mkdir $TE; tar xf $TAR -C $TE; cd $TE; TD=$(ls); mv $TD/* .; mv %TD/.* .; rmdir $TD; cd ..; done
         rm *.tgz
-        echo Renaming...
-        ls | while read REP; do mv $REP $(echo $REP | sed -e "s/^[^-]*-//" -e "s/\(.*\)-.*/\1/"); done
         cd $DIR
     else
         echo ~/.config/nvim/plugged already contains some files. Assuming the plugins are installed...
@@ -98,8 +96,5 @@ fi
 echo The installation is complete. && sleep 1 && echo
 
 ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
-if [ -z "$NO_GIT" ]; then
-    nvim +'PlugInstall --sync|q|q'; nvim +"$ARG"
-else
-    nvim +"$ARG"
-fi
+
+if [ -z "$NO_GIT" ]; then nvim +'PlugInstall --sync|q|q'; nvim +"$ARG"; else nvim +"$ARG"; fi
