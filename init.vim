@@ -28,6 +28,8 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'morhetz/gruvbox' 
 
+Plug 'alec-gibson/nvim-tetris'
+
 call plug#end()
 
 let g:gruvbox_italic = 1
