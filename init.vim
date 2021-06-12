@@ -17,10 +17,9 @@ Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'junegunn/vim-easy-align'
 
 Plug 'junegunn/vim-slash'
-Plug 'markonm/traces.vim'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -207,6 +206,8 @@ set autowrite
 
 set mouse=a
 set clipboard+=unnamedplus
+
+set inccommand=split
 
 set termguicolors
 silent! colorscheme gruvbox
