@@ -17,9 +17,10 @@ Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'junegunn/vim-slash'
-Plug 'junegunn/vim-easy-align'
+Plug 'markonm/traces.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
