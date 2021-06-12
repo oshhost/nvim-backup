@@ -49,7 +49,7 @@ if ! hash nvim 2>/dev/null; then
     fi
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
-        echo Symlinking vi and vim to nvim... You might want to change this behaviour manually.
+        echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
         for DEST in vi vim nvim; do
             ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
         done
