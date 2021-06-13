@@ -184,7 +184,7 @@ nnoremap <A-o> <C-w>o
 nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
 autocmd TermOpen * setlocal nonu
 
-nnoremap <A-e> :!xdg-open %:p:h 2>/dev/null & disown<CR>
+nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
 
 set updatetime=300
 
