@@ -24,7 +24,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'rust-lang/rust.vim'
-"'udalov/kotlin-vim'
+Plug 'udalov/kotlin-vim'
 
 Plug 'morhetz/gruvbox' 
 
@@ -43,13 +43,13 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDUsePlaceHolders = 0
 
 let g:coc_global_extensions = [
-	\ 'coc-pyright',
-	\ 'coc-rust-analyzer',
-	\ 'coc-go',
-	\ 'coc-sh',
-	\ 'coc-calc'
+    \ 'coc-pyright',
+    \ 'coc-kotlin',
+    \ 'coc-rust-analyzer',
+    \ 'coc-go',
+    \ 'coc-sh',
+    \ 'coc-calc'
   \ ]
-    " \ 'coc-kotlin',
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
