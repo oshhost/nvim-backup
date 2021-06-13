@@ -150,6 +150,8 @@ vnoremap <leader>; $A;<ESC>
 nnoremap <A-[> :set list<CR>
 nnoremap <A-]> :set nolist<CR>
 
+nnoremap <C-l> :noh<CR>
+
 nnoremap <A-s> :set syntax=
 
 tnoremap <ESC> <C-\><C-N>
@@ -181,6 +183,8 @@ tmap <A-c> <ESC>:bd!<CR>
 nnoremap <A-o> <C-w>o
 nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
 autocmd TermOpen * setlocal nonu
+
+nnoremap <A-e> :!xdg-open %:p:h 2>/dev/null & disown<CR>
 
 set updatetime=300
 
