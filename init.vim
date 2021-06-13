@@ -181,9 +181,9 @@ tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
 tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
-nnoremap <A-t> :vs<CR><C-w>l:term<CR>i
+nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
 autocmd TermOpen * setlocal nonu
-autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufWinEnter,WinEnter term://* wa|startinsert
 
 nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
 
