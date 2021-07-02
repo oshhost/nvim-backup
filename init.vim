@@ -32,6 +32,15 @@ Plug 'alec-gibson/nvim-tetris'
 
 call plug#end()
 
+let g:coc_global_extensions = [
+    \ 'coc-pyright',
+    \ 'coc-kotlin',
+    \ 'coc-rust-analyzer',
+    \ 'coc-go',
+    \ 'coc-sh',
+    \ 'coc-calc'
+  \ ]
+
 let g:gruvbox_italic = 1
 
 let g:rust_clip_command = 'xclip -selection clipboard'
@@ -41,15 +50,6 @@ let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 let g:NERDUsePlaceHolders = 0
-
-let g:coc_global_extensions = [
-    \ 'coc-pyright',
-    \ 'coc-kotlin',
-    \ 'coc-rust-analyzer',
-    \ 'coc-go',
-    \ 'coc-sh',
-    \ 'coc-calc'
-  \ ]
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
