@@ -26,7 +26,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
 Plug 'udalov/kotlin-vim'
 
-Plug 'morhetz/gruvbox' 
+Plug 'morhetz/gruvbox'
 
 Plug 'alec-gibson/nvim-tetris'
 
@@ -64,7 +64,7 @@ let g:lightline = {
 	\ },
 	\ }
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 nmap <C-q> :NERDTreeToggle<CR>
 nmap <A-u> :UndotreeToggle<CR><C-w>h
@@ -182,8 +182,8 @@ tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
 nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
-autocmd TermOpen * setlocal nonu
-autocmd BufWinEnter,WinEnter term://* wa|startinsert
+au TermOpen * setlocal nonu
+au BufWinEnter,WinEnter term://* wa|startinsert
 
 nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
 
@@ -223,6 +223,9 @@ hi CocErrorSign guifg=Red
 hi CocWarningSign guifg=Orange
 hi CocInfoSign guifg=Green
 hi CocHintSign guibg=NONE
+
+hi ExtraWhitespace guibg=DarkRed
+mat ExtraWhitespace /\s\+$/
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command! Q q
