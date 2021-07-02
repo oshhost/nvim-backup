@@ -14,6 +14,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 
 Plug 'tpope/vim-surround'
+Plug 'cohama/lexima.vim'
+
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
 Plug 'AndrewRadev/splitjoin.vim'
