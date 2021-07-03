@@ -9,6 +9,7 @@ if [[ "$(nvim -v | head -n1 | cut -c6-)" != "$(wget -qO- api.github.com/repos/ne
     ./nvim.appimage --appimage-extract >/dev/null
     rm nvim.appimage
     echo Moving content to ~/.local/share/nvim...
+    rm -rf ~/.local/share/nvim
     mv squashfs-root/* ~/.local/share/nvim
     rm -rf squashfs-root
     cd $DIR
