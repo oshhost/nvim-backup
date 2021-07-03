@@ -14,8 +14,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 
 Plug 'tpope/vim-surround'
-Plug 'cohama/lexima.vim'
-
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -35,6 +33,7 @@ Plug 'alec-gibson/nvim-tetris'
 call plug#end()
 
 let g:coc_global_extensions = [
+    \ 'coc-pairs',
     \ 'coc-pyright',
     \ 'coc-kotlin',
     \ 'coc-rust-analyzer',
