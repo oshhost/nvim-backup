@@ -23,8 +23,8 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'rust-lang/rust.vim'
-Plug 'udalov/kotlin-vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
 
 Plug 'morhetz/gruvbox'
 
@@ -55,7 +55,7 @@ let g:NERDUsePlaceHolders = 0
 let g:NERDTreeGitStatusUseNerdFonts = 1
 
 let g:lightline = {
-	\ 'colorscheme': 'jellybeans',
+	\ 'colorscheme': 'gruvbox',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -229,4 +229,5 @@ hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
 command! Q q
