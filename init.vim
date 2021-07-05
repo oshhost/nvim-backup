@@ -23,6 +23,10 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
 
@@ -31,6 +35,16 @@ Plug 'morhetz/gruvbox'
 Plug 'alec-gibson/nvim-tetris'
 
 call plug#end()
+
+lua <<EOF
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = { ["<ESC>"] = require('telescope.actions').close }
+      }
+  }
+}
+EOF
 
 let g:coc_global_extensions = [
     \ 'coc-pairs',
@@ -86,7 +100,7 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
@@ -114,8 +128,8 @@ nmap ga <Plug>(EasyAlign)
 
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
@@ -187,6 +201,13 @@ au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|startinsert
 
 nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
+
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+
+nnoremap <leader>pp :PlugSync<CR>
 
 set updatetime=300
 
