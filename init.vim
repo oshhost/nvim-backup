@@ -169,6 +169,8 @@ nnoremap <C-l> :noh<CR>
 
 nnoremap <A-s> :set syntax=
 
+nnoremap <A-m> :mes<CR>
+
 tnoremap <ESC> <C-\><C-N>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
