@@ -22,21 +22,15 @@ mkdir -p ~/.config/nvim/plugged
 if ! hash nvim 2>/dev/null; then
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
         DIR=$PWD
-        cd /tmp
+        cd ~/.local/bin
         echo Downloading Neovim...
         wget --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
         chmod u+x nvim.appimage
-        echo Extracting...
-        ./nvim.appimage --appimage-extract >/dev/null
-        rm nvim.appimage
-        echo Moving content to ~/.local/share/nvim...
-        mv squashfs-root/* ~/.local/share/nvim
-        rm -rf squashfs-root
+        mv nvim.appimage nvim
         echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
-        for DEST in vi vim nvim; do
-            ln -sf "$HOME/.local/share/nvim/AppRun" "$HOME/.local/bin/$DEST"
+        for DEST in vi vim; do
+            ln -sf "$HOME/.local/bin/nvim" "$HOME/.local/bin/$DEST"
         done
-        cd ~/.local/bin
         echo && echo To uninstall and update neovim, use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
         wget --show-progress -q $UNINSTALL $UPDATE
         chmod +x uninstall-nvim.sh update-nvim.sh
