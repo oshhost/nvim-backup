@@ -46,6 +46,8 @@ require('telescope').setup{
 }
 EOF
 
+let mapleader=" "
+
 let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-pyright',
