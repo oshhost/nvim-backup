@@ -1,4 +1,5 @@
 silent! call plug#begin('~/.config/nvim/plugged')
+Plug 'gennaro-tedesco/nvim-peekup'
 
 Plug 'mhinz/vim-startify'
 
@@ -27,6 +28,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'gennaro-tedesco/nvim-peekup'
+
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
 
@@ -44,6 +47,9 @@ require('telescope').setup{
       }
   }
 }
+
+require('nvim-peekup.config').on_keystroke["delay"] = ''
+require('nvim-peekup.config').on_keystroke["paste_reg"] = "+"
 EOF
 
 let g:coc_global_extensions = [
@@ -59,6 +65,9 @@ let g:coc_global_extensions = [
 let g:gruvbox_italic = 1
 
 let g:rust_clip_command = 'xclip -selection clipboard'
+
+let g:peekup_paste_before = '<leader>P'
+let g:peekup_paste_after = '<leader>p'
 
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -144,6 +153,9 @@ nmap в d
 
 nnoremap d "_d
 vnoremap d "_d
+
+nnoremap dx dd
+vnoremap dx dd
 
 nnoremap D "_D
 vnoremap D "_D
