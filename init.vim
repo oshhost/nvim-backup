@@ -82,6 +82,7 @@ let g:lightline = {
 au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 nmap <C-q> :NERDTreeToggle<CR>
+imap <C-q> <C-o>:NERDTreeToggle<CR>
 nmap <A-u> :UndotreeToggle<CR><C-w>h
 vmap == <plug>NERDCommenterToggle
 nmap == <plug>NERDCommenterToggle
@@ -209,7 +210,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
-nnoremap <leader>pp :PlugSync<CR>
+nnoremap <leader>ps :PlugSync<CR>
 
 set updatetime=300
 
