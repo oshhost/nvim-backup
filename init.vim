@@ -1,6 +1,4 @@
 silent! call plug#begin('~/.config/nvim/plugged')
-Plug 'gennaro-tedesco/nvim-peekup'
-
 Plug 'mhinz/vim-startify'
 
 Plug 'bling/vim-bufferline'
