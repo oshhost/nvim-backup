@@ -40,9 +40,10 @@ call plug#end()
 lua <<EOF
 require('telescope').setup{
   defaults = {
+    prompt_prefix = " 🔍 ",
     mappings = {
       i = { ["<ESC>"] = require('telescope.actions').close }
-      }
+    }
   }
 }
 
@@ -64,8 +65,8 @@ let g:gruvbox_italic = 1
 
 let g:rust_clip_command = 'xclip -selection clipboard'
 
-let g:peekup_paste_before = '<leader>P'
-let g:peekup_paste_after = '<leader>p'
+let g:peekup_paste_before = '"P'
+let g:peekup_paste_after = '"p'
 
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -141,19 +142,12 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-nmap о j
-nmap л k
-nmap р h
-nmap д l
-nmap ш i
-nmap ф a
-nmap в d
-
 nnoremap d "_d
 vnoremap d "_d
 
 nnoremap dx dd
-vnoremap dx dd
+vnoremap dx dd<ESC>
+vnoremap dd dd<ESC>
 
 nnoremap D "_D
 vnoremap D "_D
@@ -169,12 +163,10 @@ inoremap <C-e> <ESC>
 nnoremap <C-s> :up<CR>
 inoremap <C-s> <C-o>:up<CR>
 
-inoremap <leader>; <C-o>A;
 nnoremap <leader>; A;<ESC>
 vnoremap <leader>; $A;<ESC>
 
-nnoremap <A-[> :set list<CR>
-nnoremap <A-]> :set nolist<CR>
+nnoremap <A-[> :set list!<CR>
 
 nnoremap <C-l> :noh<CR>
 
@@ -200,6 +192,7 @@ nnoremap <A-a> :badd
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
 nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
+nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
 
 tmap <A-a> <ESC>:badd 
@@ -215,12 +208,13 @@ au BufWinEnter,WinEnter term://* wa|startinsert
 
 nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
 
-nnoremap <leader>ff <cmd>Telescope find_files<CR>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope live_grep<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
 
 nnoremap <leader>ps :PlugSync<CR>
+
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 set updatetime=300
 
@@ -264,4 +258,5 @@ mat ExtraWhitespace /\s\+$/
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
+command! H Telescope help_tags
 command! Q q
