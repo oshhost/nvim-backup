@@ -1,8 +1,7 @@
-#!/bin/sh
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 UNINSTALL="raw.githubusercontent.com/oshhost/nvim-backup/main/uninstall-nvim.sh"
 UPDATE="raw.githubusercontent.com/oshhost/nvim-backup/main/update-nvim.sh"
-NODE="install-node.now.sh/lts"
+NODE="install-node.vercel.app/lts"
 
 CB=$(tput setaf 4);CG=$(tput setaf 2);CD=$(tput sgr0)
 echo
@@ -44,7 +43,7 @@ if ! hash nvim 2>/dev/null; then
 else
     if [ ! -e ~/.local/share/nvim/AppRun ]; then
         echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
-        for DEST in vi vim nvim; do
+        for DEST in vi vim; do
             ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
         done
     fi
@@ -87,7 +86,9 @@ if ! hash node 2>/dev/null; then
     echo
 fi
 
-echo The installation is complete. && sleep 1 && echo
+echo The installation is complete.
+sleep 1
+echo
 
 ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
 
