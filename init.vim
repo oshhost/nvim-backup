@@ -170,7 +170,7 @@ nnoremap <A-]> :set list!<CR>
 
 nnoremap <C-l> :noh<CR>
 
-nnoremap <A-s> :set syntax=
+nnoremap <C-w><A-s> :set syntax=
 
 nnoremap <A-m> :mes<CR>
 
@@ -202,8 +202,8 @@ tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
 tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
-nnoremap <A-v> :vsp<CR>
-nnoremap <A-h> :sp<CR>
+nnoremap <A-v> <C-w>v
+nnoremap <A-s> <C-w>s
 
 nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
 au TermOpen * setlocal nonu
