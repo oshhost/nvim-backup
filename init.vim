@@ -202,6 +202,9 @@ tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
 tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
+nnoremap <A-v> :vsp<CR>
+nnoremap <A-h> :sp<CR>
+
 nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|startinsert
