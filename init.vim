@@ -166,7 +166,7 @@ inoremap <C-s> <C-o>:up<CR>
 nnoremap <leader>; A;<ESC>
 vnoremap <leader>; $A;<ESC>
 
-nnoremap <A-[> :set list!<CR>
+nnoremap <A-]> :set list!<CR>
 
 nnoremap <C-l> :noh<CR>
 
