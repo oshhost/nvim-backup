@@ -225,7 +225,8 @@ nnoremap <A-o> <C-w>o
 nnoremap <A-v> <C-w>v
 nnoremap <A-s> <C-w>s
 
-nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
+nnoremap <A-t>v :wa<bar>vs<CR><C-w>l:term<CR>i
+nnoremap <A-t>s :wa<bar>sp<CR><C-w>j:term<CR>i
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|startinsert
 
