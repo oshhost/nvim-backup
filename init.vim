@@ -213,7 +213,11 @@ nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
 nmap <A-d> <C-s><bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
-nnoremap <A-c> :clo<CR>
+nnoremap <A-c> <C-w>c
+
+nnoremap <A-o> <C-w>o
+nnoremap <A-v> <C-w>v
+nnoremap <A-s> <C-w>s
 
 tmap <A-a> <ESC>:e 
 tmap <A-n> <ESC>:bn<CR>
@@ -221,14 +225,14 @@ tmap <A-b> <ESC>:bp<CR>
 tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
 tmap <A-c> <ESC>:bd!<CR>
 
-nnoremap <A-o> <C-w>o
-nnoremap <A-v> <C-w>v
-nnoremap <A-s> <C-w>s
-
 nnoremap <A-t>v :wa<bar>vs<CR><C-w>l:term<CR>i
+nmap <A-t><A-v> <A-t>v
 nnoremap <A-t>s :wa<bar>sp<CR><C-w>j:term<CR>i
+nmap <A-t><A-s> <A-t>s
+
 au TermOpen * setlocal nonu
-au BufWinEnter,WinEnter term://* wa|startinsert
+au BufWinEnter,WinEnter term://* wa|star
+au BufWinLeave,WinLeave term://* stopi
 
 nnoremap <A-e> :sil !xdg-open %:p:h &<CR>
 
