@@ -165,7 +165,7 @@ vnoremap X "_x
 
 inoremap <C-e> <ESC>
 
-nmap <C-s> :up<CR>
+nnoremap <C-s> :up<CR>
 inoremap <C-s> <C-o>:up<CR>
 
 nnoremap <leader>; A;<ESC>
@@ -211,15 +211,15 @@ nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 nnoremap <A-a> :e 
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
-nnoremap <A-d> <C-s><bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
+nmap <A-d> <C-s><bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
 
-tmap <A-a> <ESC>:e 
-tmap <A-n> <ESC>:bn<CR>
-tmap <A-b> <ESC>:bp<CR>
-tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
-tmap <A-c> <ESC>:bd!<CR>
+tnoremap <A-a> <ESC>:e 
+tnoremap <A-n> <ESC>:bn<CR>
+tnoremap <A-b> <ESC>:bp<CR>
+tnoremap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
+tnoremap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
 nnoremap <A-v> <C-w>v
@@ -229,7 +229,7 @@ nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|startinsert
 
-nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null &<CR>
+nnoremap <A-e> :sil !xdg-open %:p:h &<CR>
 
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
