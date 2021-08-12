@@ -215,11 +215,11 @@ nmap <A-d> <C-s><bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
 
-tnoremap <A-a> <ESC>:e 
-tnoremap <A-n> <ESC>:bn<CR>
-tnoremap <A-b> <ESC>:bp<CR>
-tnoremap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
-tnoremap <A-c> <ESC>:bd!<CR>
+tmap <A-a> <ESC>:e 
+tmap <A-n> <ESC>:bn<CR>
+tmap <A-b> <ESC>:bp<CR>
+tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
+tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-o> <C-w>o
 nnoremap <A-v> <C-w>v
