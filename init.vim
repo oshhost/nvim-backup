@@ -211,7 +211,7 @@ nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 nnoremap <A-a> :e 
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
-nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
+nnoremap <A-d> <C-s><bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
 
