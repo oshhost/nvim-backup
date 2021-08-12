@@ -38,17 +38,22 @@ Plug 'alec-gibson/nvim-tetris'
 call plug#end()
 
 lua <<EOF
+local tclose = require('telescope.actions').close
 require('telescope').setup{
   defaults = {
     prompt_prefix = " 🔍 ",
     mappings = {
-      i = { ["<ESC>"] = require('telescope.actions').close }
+      i = {
+          ["<ESC>"] = tclose,
+          ["<A-c>"] = tclose
+      }
     }
   }
 }
 
-require('nvim-peekup.config').on_keystroke["delay"] = ''
-require('nvim-peekup.config').on_keystroke["paste_reg"] = "+"
+local npconf = require('nvim-peekup.config')
+npconf.on_keystroke["delay"] = ''
+npconf.on_keystroke["paste_reg"] = "+"
 EOF
 
 let g:coc_global_extensions = [
@@ -160,7 +165,7 @@ vnoremap X "_x
 
 inoremap <C-e> <ESC>
 
-nnoremap <C-s> :up<CR>
+nmap <C-s> :up<CR>
 inoremap <C-s> <C-o>:up<CR>
 
 nnoremap <leader>; A;<ESC>
@@ -188,14 +193,29 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-nnoremap <A-a> :badd 
+tmap <A-Left> <A-h>
+tmap <A-Down> <A-j>
+tmap <A-Up> <A-k>
+tmap <A-Right> <A-l>
+imap <A-Left> <A-h>
+imap <A-Down> <A-j>
+imap <A-Up> <A-k>
+imap <A-Right> <A-l>
+nmap <A-Left> <A-h>
+nmap <A-Down> <A-j>
+nmap <A-Up> <A-k>
+nmap <A-Right> <A-l>
+
+nnoremap <A-a> :e 
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
 nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
 
-tmap <A-a> <ESC>:badd 
+nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
+
+tmap <A-a> <ESC>:e 
 tmap <A-n> <ESC>:bn<CR>
 tmap <A-b> <ESC>:bp<CR>
 tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
@@ -209,7 +229,7 @@ nnoremap <A-t> :wa<bar>vs<CR><C-w>l:term<CR>i
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|startinsert
 
-nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null & disown<CR>
+nnoremap <A-e> :sil !xdg-open %:p:h 2>/dev/null &<CR>
 
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
