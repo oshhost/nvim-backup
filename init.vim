@@ -206,14 +206,14 @@ nmap <A-Down> <A-j>
 nmap <A-Up> <A-k>
 nmap <A-Right> <A-l>
 
+nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
+
 nnoremap <A-a> :e 
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
 nnoremap <A-d> :w<bar>:bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-f><A-d> :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <A-c> :clo<CR>
-
-nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 
 tmap <A-a> <ESC>:e 
 tmap <A-n> <ESC>:bn<CR>
