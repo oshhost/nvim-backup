@@ -184,10 +184,10 @@ tmap <A-h> <ESC><C-w>h
 tmap <A-j> <ESC><C-w>j
 tmap <A-k> <ESC><C-w>k
 tmap <A-l> <ESC><C-w>l
-inoremap <A-h> <ESC><C-w>h
-inoremap <A-j> <ESC><C-w>j
-inoremap <A-k> <ESC><C-w>k
-inoremap <A-l> <ESC><C-w>l
+inoremap <A-h> <ESC><C-w>hi
+inoremap <A-j> <ESC><C-w>ji
+inoremap <A-k> <ESC><C-w>ki
+inoremap <A-l> <ESC><C-w>li
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
