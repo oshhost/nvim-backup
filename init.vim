@@ -234,6 +234,11 @@ nmap <A-C-Right> <A-C-l>
 
 nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 
+tmap <A-a> <ESC>:e 
+tmap <A-n> <ESC>:bn<CR>
+tmap <A-b> <ESC>:bp<CR>
+tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
+tmap <A-c> <ESC>:bd!<CR>
 nnoremap <A-a> :e 
 nnoremap <A-n> :bn<CR>
 nnoremap <A-b> :bp<CR>
@@ -244,12 +249,6 @@ nnoremap <A-c> <C-w>c
 nnoremap <A-o> <C-w>o
 nnoremap <A-v> <C-w>v
 nnoremap <A-s> <C-w>s
-
-tmap <A-a> <ESC>:e 
-tmap <A-n> <ESC>:bn<CR>
-tmap <A-b> <ESC>:bp<CR>
-tmap <A-d> <ESC>:bp<bar>sp<bar>bn<bar>bd!<CR>
-tmap <A-c> <ESC>:bd!<CR>
 
 nnoremap <A-t>v :wa<bar>vs<CR><C-w>l:term<CR>i
 nmap <A-t><A-v> <A-t>v
