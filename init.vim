@@ -180,14 +180,14 @@ nnoremap <C-w><A-s> :set syntax=
 nnoremap <A-m> :mes<CR>
 
 tnoremap <ESC> <C-\><C-N>
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
+tmap <A-h> <ESC><C-w>h
+tmap <A-j> <ESC><C-w>j
+tmap <A-k> <ESC><C-w>k
+tmap <A-l> <ESC><C-w>l
+inoremap <A-h> <ESC><C-w>h
+inoremap <A-j> <ESC><C-w>j
+inoremap <A-k> <ESC><C-w>k
+inoremap <A-l> <ESC><C-w>l
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
@@ -205,6 +205,32 @@ nmap <A-Left> <A-h>
 nmap <A-Down> <A-j>
 nmap <A-Up> <A-k>
 nmap <A-Right> <A-l>
+
+tmap <A-C-h> <ESC><C-w>Hi
+tmap <A-C-j> <ESC><C-w>Ji
+tmap <A-C-k> <ESC><C-w>Ki
+tmap <A-C-l> <ESC><C-w>Li
+inoremap <A-C-h> <ESC><C-w>H
+inoremap <A-C-j> <ESC><C-w>J
+inoremap <A-C-k> <ESC><C-w>K
+inoremap <A-C-l> <ESC><C-w>L
+nnoremap <A-C-h> <C-w>H
+nnoremap <A-C-j> <C-w>J
+nnoremap <A-C-k> <C-w>K
+nnoremap <A-C-l> <C-w>L
+
+tmap <A-C-Left> <A-C-h>
+tmap <A-C-Down> <A-C-j>
+tmap <A-C-Up> <A-C-k>
+tmap <A-C-Right> <A-C-l>
+imap <A-C-Left> <A-C-h>
+imap <A-C-Down> <A-C-j>
+imap <A-C-Up> <A-C-k>
+imap <A-C-Right> <A-C-l>
+nmap <A-C-Left> <A-C-h>
+nmap <A-C-Down> <A-C-j>
+nmap <A-C-Up> <A-C-k>
+nmap <A-C-Right> <A-C-l>
 
 nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 
