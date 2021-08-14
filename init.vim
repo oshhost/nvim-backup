@@ -28,9 +28,6 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'gennaro-tedesco/nvim-peekup'
 
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
-
 Plug 'morhetz/gruvbox'
 
 Plug 'alec-gibson/nvim-tetris'
@@ -59,16 +56,12 @@ EOF
 let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-pyright',
-    \ 'coc-kotlin',
-    \ 'coc-rust-analyzer',
     \ 'coc-go',
     \ 'coc-sh',
     \ 'coc-calc'
   \ ]
 
 let g:gruvbox_italic = 1
-
-let g:rust_clip_command = 'xclip -selection clipboard'
 
 let g:peekup_paste_before = '"P'
 let g:peekup_paste_after = '"p'
@@ -274,8 +267,8 @@ set updatetime=300
 set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 set tabstop=4
-set shiftwidth=0
-set expandtab
+set shiftwidth=4
+set noexpandtab
 
 set noshowmode
 set laststatus=2
