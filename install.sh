@@ -85,11 +85,11 @@ LATEST="$(wget -qO- 'https://golang.org/VERSION?m=text')"
 DL_PKG="$LATEST.linux-amd64.tar.gz"
 DL_URL="https://golang.org/dl/$DL_PKG"
 
-function current_go() {
+current_go() {
 	echo $(go version | grep -oP 'go[0-9.]+')
 }
 
-function download_latest_go() {
+download_latest_go() {
 	cd /tmp
 	echo "Downloading latest Go for Linux AMD64: ${LATEST}."
 	wget --no-check-certificate --continue --show-progress "$DL_URL" -P "$GOUTIL"
