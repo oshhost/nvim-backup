@@ -25,12 +25,11 @@ if ! hash nvim 2>/dev/null; then
 		case $yn in
 			[Nn]* );;
 			* )
-				echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
+				echo Symlinking vi and vim to nvim \(~/.local/bin\)...
 				for DEST in vi vim; do
 					ln -sf "$HOME/.local/bin/nvim" "$HOME/.local/bin/$DEST"
 				done
 		esac
-		fi
 		echo && echo To uninstall and update neovim use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
 		UNINSTALL="raw.githubusercontent.com/oshhost/nvim-backup/main/uninstall-nvim.sh"
 		UPDATE="raw.githubusercontent.com/oshhost/nvim-backup/main/update-nvim.sh"
@@ -38,9 +37,14 @@ if ! hash nvim 2>/dev/null; then
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
 	if ! hash nvim 2>/dev/null; then
-		echo Prepending ~/.local/bin to PATH \(~/.bashrc\)... You might want to change this behaviour manually.
-		echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-		PATH=$HOME/.local/bin:$PATH
+		read -t 2.5 -p "Add ~/.local/bin to PATH? [Y/n]: " yn
+		case $yn in
+			[Nn]* );;
+			* )
+				echo Prepending ~/.local/bin to PATH \(~/.bashrc\)...
+				echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+				PATH=$HOME/.local/bin:$PATH
+		esac
 	fi
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
@@ -48,7 +52,7 @@ else
 		case $yn in
 			[Nn]* );;
 			* )
-				echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
+				echo Symlinking vi and vim to nvim \(~/.local/bin\)...
 				for DEST in vi vim; do
 					ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
 				done
