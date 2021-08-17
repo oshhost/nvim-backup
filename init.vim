@@ -38,7 +38,7 @@ lua <<EOF
 local tclose = require('telescope.actions').close
 require('telescope').setup{
   defaults = {
-    prompt_prefix = " 🔍 ",
+    prompt_prefix = "> ",
     mappings = {
       i = {
           ["<ESC>"] = tclose,
@@ -306,3 +306,7 @@ command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
 command! H Telescope help_tags
 command! Q q
+
+cabbrev S %s
+cabbrev hes .,$s
+cabbrev shs 1,.s
