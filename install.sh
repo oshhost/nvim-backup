@@ -11,7 +11,7 @@ echo "${CB} 8 \`88b.    8   .ooooo.   .ooooo.${CG} oooo    ooo oooo  ooo. .oo.  
 echo "${CB} 8   \`88b.  8  d88' \`88b d88' \`88b${CG} \`88.  .8'  \`888  \`888P\"Y88bP\"Y88b   ${CR}88888888888  ${CC}888           d88' \`88b"
 echo "${CB} 8     \`88b.8  888ooo888 888   888${CG}  \`88..8'    888   888   888   888   ${CR}\`Y8888888Y'  ${CC}888     ooooo 888   888"
 echo "${CB} 8       \`888  888    .o 888   888${CG}   \`888'     888   888   888   888     ${CR}\`Y888Y'    ${CC}\`88.    .88'  888   888"
-echo "${CB}o8o        \`8  \`Y8bod8P' \`Y8bod8P'${CG}    \`8'     o888o o888o o888o o888o      ${CR}\`Y'      ${CC} \`Y8bood8P'   \`Y8bod8P'"
+echo "${CB}o8o        \`8  \`Y8bod8P' \`Y8bod8P'${CG}    \`8'     o888o o888o o888o o888o      ${CR}\`Y'      ${CC} \`Y8bood8P'   \`Y8bod8P'${CD}"
 echo
 
 mkdir -p ~/.local/bin
