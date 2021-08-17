@@ -1,8 +1,3 @@
-INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
-UNINSTALL="raw.githubusercontent.com/oshhost/nvim-backup/main/uninstall-nvim.sh"
-UPDATE="raw.githubusercontent.com/oshhost/nvim-backup/main/update-nvim.sh"
-NODE="install-node.vercel.app/lts"
-
 CC=$(tput setaf 6);CB=$(tput setaf 4);CG=$(tput setaf 2);CR=$(tput setaf 1);CD=$(tput sgr0)
 echo
 echo "${CB}ooooo      ooo${CG}                                 o8o                                 ${CC}  .oooooo."
@@ -23,14 +18,22 @@ if ! hash nvim 2>/dev/null; then
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
 		cd ~/.local/bin
 		echo Downloading Neovim...
-		wget --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
+		wget --continue --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x nvim.appimage
 		mv nvim.appimage nvim
-		echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
-		for DEST in vi vim; do
-			ln -sf "$HOME/.local/bin/nvim" "$HOME/.local/bin/$DEST"
-		done
-		echo && echo To uninstall and update neovim, use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
+		read -t 2.5 -p "Create symlinks to nvim? [Y/n]: " yn
+		case $yn in
+			[Nn]* );;
+			* )
+				echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
+				for DEST in vi vim; do
+					ln -sf "$HOME/.local/bin/nvim" "$HOME/.local/bin/$DEST"
+				done
+		esac
+		fi
+		echo && echo To uninstall and update neovim use uninstall-nvim.sh and update-nvim.sh scripts accordingly \(~/.local/bin\)...
+		UNINSTALL="raw.githubusercontent.com/oshhost/nvim-backup/main/uninstall-nvim.sh"
+		UPDATE="raw.githubusercontent.com/oshhost/nvim-backup/main/update-nvim.sh"
 		wget --show-progress -q $UNINSTALL $UPDATE
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
@@ -41,15 +44,21 @@ if ! hash nvim 2>/dev/null; then
 	fi
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
-		echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
-		for DEST in vi vim; do
-			ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
-		done
+		read -t 2.5 -p "Create symlinks to nvim? [Y/n]: " yn
+		case $yn in
+			[Nn]* );;
+			* )
+				echo Symlinking vi and vim to nvim \(~/.local/bin\)... You might want to change this behaviour manually.
+				for DEST in vi vim; do
+					ln -sf "/usr/bin/nvim" "$HOME/.local/bin/$DEST"
+				done
+		esac
 	fi
 fi
 echo
 
 echo Synchronizing init.vim...
+INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 wget --show-progress -qO ~/.config/nvim/init.vim $INIT
 echo
 
@@ -75,39 +84,38 @@ if ! hash git 2>/dev/null; then
 	echo
 fi
 
+
 if ! hash node 2>/dev/null; then
-	echo Installing Node.js...
-	wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
-	echo
+	read -t 2.5 -p "Install Node.js? [Y/n]: " yn
+	case $yn in
+		[Nn]* );;
+		* )
+			echo Installing Node.js...
+			NODE="install-node.vercel.app/lts"
+			wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
+			echo
+	esac
 fi
 
-LATEST="$(wget -qO- 'https://golang.org/VERSION?m=text')"
-DL_PKG="$LATEST.linux-amd64.tar.gz"
-DL_URL="https://golang.org/dl/$DL_PKG"
-
-current_go() {
-	echo $(go version | grep -oP 'go[0-9.]+')
-}
-
-download_latest_go() {
-	cd /tmp
-	echo "Downloading latest Go for Linux AMD64: ${LATEST}."
-	wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
-	rm -rf "$HOME/go" && tar -C $HOME -xzf "$DL_PKG"
-	echo "Updated Go to version $(current_go)."
-}
-
-if hash go 2>/dev/null; then
-	CURRENT="$(current_go)"
-	if ! ["$CURRENT" == "$LATEST" ]; then
-		echo "Updating $CURRENT to $LATEST."
-		download_latest_go
-	else
-		echo "$CURRENT is up to date."
-	fi
-else
-	echo Installing Golang...
-	download_latest_go
+if ! hash go 2>/dev/null; then
+	read -t 2.5 -p "Install Golang? [Y/n]: " yn
+		case $yn in
+			[Nn]* );;
+			* )
+				cd /tmp
+				echo Installing Golang...
+				LATEST="$(wget -qO- 'https://golang.org/VERSION?m=text')"
+				DL_PKG="$LATEST.linux-amd64.tar.gz"
+				DL_URL="https://golang.org/dl/$DL_PKG"
+				wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
+				tar -C $HOME -xzf "$DL_PKG"
+				echo To update golang use update-golang.sh script \(~/.local/bin\)...
+				cd ~/.local/bin
+				UPDATE="https://raw.githubusercontent.com/oshhost/nvim-backup/main/update-golang.sh"
+				wget --show-progress -q $UPDATE
+				chmod +x update-golang.sh
+				#add go to path
+	esac
 fi
 
 echo The installation is complete.
