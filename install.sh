@@ -92,7 +92,7 @@ current_go() {
 download_latest_go() {
 	cd /tmp
 	echo "Downloading latest Go for Linux AMD64: ${LATEST}."
-	wget --no-check-certificate --continue --show-progress "$DL_URL" -P "$GOUTIL"
+	wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
 	rm -rf "$HOME/go" && tar -C $HOME -xzf "$DL_PKG"
 	echo "Updated Go to version $(current_go)."
 }
