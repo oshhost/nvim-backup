@@ -1,4 +1,4 @@
-CC=$(tput setaf 6);CB=$(tput setaf 4);CG=$(tput setaf 2);CR=$(tput setaf 1);CD=$(tput sgr0)
+CC='\033[36m';CB='\033[34m';CG='\033[32m';CR='\033[31m';CD='\033[0m'
 echo
 echo "${CB}ooooo      ooo${CG}                                 o8o                                 ${CC}  .oooooo."
 echo "${CB}\`888b.     \`8'${CG}                                 \`\"'                                 ${CC} d8P'  \`Y8b"
@@ -14,6 +14,14 @@ mkdir -p ~/.local/share/nvim/site/autoload
 mkdir -p ~/.config/nvim/plugged
 DIR=$PWD
 
+getch() {
+        old=$(stty -g)
+        stty raw -echo min 0 time 15
+		echo $1
+        eval "$2=\$(dd bs=1 count=1 2>/dev/null)"
+        stty $old
+}
+
 if ! hash nvim 2>/dev/null; then
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
 		cd ~/.local/bin
@@ -21,7 +29,7 @@ if ! hash nvim 2>/dev/null; then
 		wget --continue --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x nvim.appimage
 		mv nvim.appimage nvim
-		read -t 2.5 -p "Create symlinks to nvim? [Y/n]: " yn
+		getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -37,7 +45,7 @@ if ! hash nvim 2>/dev/null; then
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
 	if ! hash nvim 2>/dev/null; then
-		read -t 2.5 -p "Add ~/.local/bin to PATH? [Y/n]: " yn
+		getch "Add ~/.local/bin to PATH? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -48,7 +56,7 @@ if ! hash nvim 2>/dev/null; then
 	fi
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
-		read -t 2.5 -p "Create symlinks to nvim? [Y/n]: " yn
+		getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -90,7 +98,7 @@ fi
 
 
 if ! hash node 2>/dev/null; then
-	read -t 2.5 -p "Install Node.js? [Y/n]: " yn
+	getch "Install Node.js? [Y/n]: " yn
 	case $yn in
 		[Nn]* );;
 		* )
@@ -102,7 +110,7 @@ if ! hash node 2>/dev/null; then
 fi
 
 if ! hash go 2>/dev/null; then
-	read -t 2.5 -p "Install Golang? [Y/n]: " yn
+	getch "Install Golang? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -113,12 +121,16 @@ if ! hash go 2>/dev/null; then
 				DL_URL="https://golang.org/dl/$DL_PKG"
 				wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
 				tar -C $HOME -xzf "$DL_PKG"
+				cd $HOME
+				mv go .go
 				echo To update golang use update-golang.sh script \(~/.local/bin\)...
 				cd ~/.local/bin
 				UPDATE="https://raw.githubusercontent.com/oshhost/nvim-backup/main/update-golang.sh"
 				wget --show-progress -q $UPDATE
 				chmod +x update-golang.sh
-				#add go to path
+				echo Prepending ~/.go/bin to PATH \(~/.bashrc\)...
+				echo 'PATH="$HOME/.go/bin:$PATH"' >> ~/.bashrc
+				PATH=$HOME/.go/bin:$PATH
 	esac
 fi
 
