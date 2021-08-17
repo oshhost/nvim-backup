@@ -16,10 +16,11 @@ DIR=$PWD
 
 getch() {
         old=$(stty -g)
-        stty raw -echo min 0 time 15
-		echo $1
+        stty raw min 0 time 15
+		printf '%s' $1
         eval "$2=\$(dd bs=1 count=1 2>/dev/null)"
         stty $old
+		echo
 }
 
 if ! hash nvim 2>/dev/null; then
