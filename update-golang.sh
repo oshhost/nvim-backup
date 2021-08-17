@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 LATEST="$(wget -qO- 'https://golang.org/VERSION?m=text')"
 DL_PKG="$LATEST.linux-amd64.tar.gz"
 DL_URL="https://golang.org/dl/$DL_PKG"
