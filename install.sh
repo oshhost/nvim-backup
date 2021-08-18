@@ -29,7 +29,7 @@ if ! hash nvim 2>/dev/null; then
 		wget --continue --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x nvim.appimage
 		mv nvim.appimage nvim
-		getch "\r\nCreate symlinks to nvim? [Y/n]: " yn
+		echo && getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -45,7 +45,7 @@ if ! hash nvim 2>/dev/null; then
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
 	if ! hash nvim 2>/dev/null; then
-		getch "\r\nAdd ~/.local/bin to PATH? [Y/n]: " yn
+		echo && getch "Add ~/.local/bin to PATH? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -56,7 +56,7 @@ if ! hash nvim 2>/dev/null; then
 	PATH=$HOME/.local/bin:$PATH
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
-		getch "\r\nCreate symlinks to nvim? [Y/n]: " yn
+		echo && getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -67,8 +67,8 @@ else
 		esac
 	fi
 fi
-echo
 
+echo
 echo Synchronizing init.vim...
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 wget --show-progress -qO ~/.config/nvim/init.vim $INIT
@@ -109,7 +109,7 @@ if ! hash node 2>/dev/null; then
 fi
 
 if ! hash go 2>/dev/null; then
-	getch "\r\nInstall Golang? [Y/n]: " yn
+	echo && getch "Install Golang? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
