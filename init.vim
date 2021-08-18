@@ -5,8 +5,8 @@ Plug 'mhinz/vim-startify'
 Plug 'bling/vim-bufferline'
 
 Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'ryanoasis/vim-devicons'
+			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
+			\ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'mbbill/undotree'
 
@@ -33,32 +33,6 @@ Plug 'morhetz/gruvbox'
 Plug 'alec-gibson/nvim-tetris'
 call plug#end()
 
-let g:go_diagnostics_enabled = 0
-let g:go_metalinter_enabled = []
-let g:go_jump_to_error = 0
-let g:go_auto_sameids = 0
-let g:go_doc_keywordprg_enabled = 0
-
-let g:go_bin_path = "$HOME/.go"
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-
-autocmd BufEnter *.go nmap <leader>t  <Plug>(go-test)
-autocmd BufEnter *.go nmap <leader>tt <Plug>(go-test-func)
-autocmd BufEnter *.go nmap <leader>c  <Plug>(go-coverage-toggle)
-
-autocmd BufEnter *.go nmap <leader>i  <Plug>(go-info)
-autocmd BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
-autocmd BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
-autocmd BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
-
 lua <<EOF
 local tclose = require('telescope.actions').close
 require('telescope').setup{
@@ -77,6 +51,23 @@ local npconf = require('nvim-peekup.config')
 npconf.on_keystroke["delay"] = ''
 npconf.on_keystroke["paste_reg"] = "+"
 EOF
+
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+let g:go_jump_to_error = 0
+let g:go_auto_sameids = 0
+let g:go_doc_keywordprg_enabled = 0
+
+let g:go_bin_path = "$HOME/.go"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
 
 let g:coc_global_extensions = [
     \ 'coc-pairs',
@@ -98,6 +89,8 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDUsePlaceHolders = 0
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+let g:bufferline_rotate = 2
 
 let g:lightline = {
 	\ 'colorscheme': 'gruvbox',
@@ -278,6 +271,15 @@ nmap <A-t><A-v> <A-t>v
 nnoremap <A-t>s :wa<bar>sp<CR><C-w>j:term<CR>i
 nmap <A-t><A-s> <A-t>s
 
+au BufEnter *.go nmap <leader>t  <Plug>(go-test)
+au BufEnter *.go nmap <leader>tt <Plug>(go-test-func)
+au BufEnter *.go nmap <leader>c  <Plug>(go-coverage-toggle)
+
+au BufEnter *.go nmap <leader>i  <Plug>(go-info)
+au BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
+au BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
+au BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
+
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|star
 au BufWinLeave,WinLeave term://* stopi
@@ -292,7 +294,7 @@ nnoremap <leader>ps :PlugSync<CR>
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
-set updatetime=300
+set updatetime=1000
 
 set listchars=eol:$,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
