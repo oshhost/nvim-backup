@@ -29,7 +29,7 @@ if ! hash nvim 2>/dev/null; then
 		wget --continue --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x nvim.appimage
 		mv nvim.appimage nvim
-		getch "Create symlinks to nvim? [Y/n]: " yn
+		getch "\r\nCreate symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -45,18 +45,18 @@ if ! hash nvim 2>/dev/null; then
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
 	if ! hash nvim 2>/dev/null; then
-		getch "Add ~/.local/bin to PATH? [Y/n]: " yn
+		getch "\r\nAdd ~/.local/bin to PATH? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
 				echo Prepending ~/.local/bin to PATH \(~/.bashrc\)...
 				echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-				PATH=$HOME/.local/bin:$PATH
 		esac
 	fi
+	PATH=$HOME/.local/bin:$PATH
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
-		getch "Create symlinks to nvim? [Y/n]: " yn
+		getch "\r\nCreate symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -86,7 +86,7 @@ if ! hash git 2>/dev/null; then
 		cd ~/.config/nvim/plugged
 		echo Git not found. Downloading plugins via wget...
 		echo Skipping plugins containing the \'git\' substring...
-		cat ~/.config/nvim/init.vim | grep "Plug '" | grep -v git | sed -e "s/^.*Plug [']//" -e "s/'.*//" | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.\*\///").tgz; do if [ "$REP" = "neoclide/coc.nvim" ]; then REF=release; else REF=master; fi; wget --show-progress -qO $OUT github.com/$REP/tarball/$REF; done
+		cat ~/.config/nvim/init.vim | grep "Plug '" | grep -v git | sed -e "s/^.*Plug [']//" -e "s/'.*//" | while read REP; if [ "$REP" = "" ]; then break; fi; OUT=$(echo $REP | sed -e "s/.*\///").tgz; do if [ "$REP" = "neoclide/coc.nvim" ]; then REF=release; else REF=master; fi; wget --show-progress -qO $OUT github.com/$REP/tarball/$REF; done
 		echo Extracting...
 		ls | grep .tgz$ | while read TAR; do TE=${TAR%.tgz}; mkdir $TE; tar xf $TAR -C $TE; cd $TE; TD=$(ls); mv $TD/* .; mv $TD/.* . 2>/dev/null; rmdir $TD; cd ..; done
 		rm *.tgz
@@ -105,12 +105,11 @@ if ! hash node 2>/dev/null; then
 			echo Installing Node.js...
 			NODE="install-node.vercel.app/lts"
 			wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
-			echo
 	esac
 fi
 
 if ! hash go 2>/dev/null; then
-	getch "Install Golang? [Y/n]: " yn
+	getch "\r\nInstall Golang? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -134,6 +133,7 @@ if ! hash go 2>/dev/null; then
 	esac
 fi
 
+echo
 echo The installation is complete.
 sleep 1
 echo
