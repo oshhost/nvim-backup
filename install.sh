@@ -14,6 +14,7 @@ mkdir -p ~/.local/share/nvim/site/autoload
 mkdir -p ~/.config/nvim/plugged
 
 getch() {
+	echo
 	old=$(stty -g 2>/dev/null)
 	stty raw min 0 time 50 2>/dev/null
 	printf %s "$1"
@@ -29,7 +30,7 @@ if ! hash nvim 2>/dev/null; then
 		wget --continue --show-progress -q github.com/neovim/neovim/releases/latest/download/nvim.appimage
 		chmod u+x nvim.appimage
 		mv nvim.appimage nvim
-		echo && getch "Create symlinks to nvim? [Y/n]: " yn
+		getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -45,7 +46,7 @@ if ! hash nvim 2>/dev/null; then
 		chmod +x uninstall-nvim.sh update-nvim.sh
 	fi
 	if ! hash nvim 2>/dev/null; then
-		echo && getch "Add ~/.local/bin to PATH? [Y/n]: " yn
+		getch "Add ~/.local/bin to PATH? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -56,7 +57,7 @@ if ! hash nvim 2>/dev/null; then
 	PATH=$HOME/.local/bin:$PATH
 else
 	if [ ! -e ~/.local/share/nvim/AppRun ]; then
-		echo && getch "Create symlinks to nvim? [Y/n]: " yn
+		getch "Create symlinks to nvim? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -72,15 +73,15 @@ echo
 echo Synchronizing init.vim...
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 wget --show-progress -qO ~/.config/nvim/init.vim $INIT
-echo
 
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
+	echo
 	echo Downloading plug.vim...
 	wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	echo
 fi
 
 if ! hash git 2>/dev/null; then
+	echo
 	NO_GIT=1
 	if [ -z "$(ls -A ~/.config/nvim/plugged)" ]; then
 		cd ~/.config/nvim/plugged
@@ -93,9 +94,12 @@ if ! hash git 2>/dev/null; then
 	else
 		echo ~/.config/nvim/plugged already contains some files. Assuming the plugins are installed...
 	fi
-	echo
 fi
 
+echo
+echo Synchronizing coc-settings.json...
+COC="https://raw.githubusercontent.com/oshhost/nvim-backup/main/coc-settings.json"
+wget --show-progress -qO ~/.config/nvim/coc-settings.json $COC
 
 if ! hash node 2>/dev/null; then
 	getch "Install Node.js? [Y/n]: " yn
@@ -109,7 +113,7 @@ if ! hash node 2>/dev/null; then
 fi
 
 if ! hash go 2>/dev/null; then
-	echo && getch "Install Golang? [Y/n]: " yn
+	getch "Install Golang? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -130,6 +134,7 @@ if ! hash go 2>/dev/null; then
 				echo Prepending ~/.go/bin to PATH \(~/.bashrc\)...
 				echo 'PATH="$HOME/.go/bin:$PATH"' >> ~/.bashrc
 				PATH=$HOME/.go/bin:$PATH
+				GOLANG="GoInstallBinaries"
 	esac
 fi
 
@@ -138,6 +143,6 @@ echo The installation is complete.
 sleep 1
 echo
 
-ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
+ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify|$GOLANG"
 
 if [ -z "$NO_GIT" ]; then nvim +'PlugInstall --sync|q|q'; nvim +"$ARG"; else nvim +"$ARG"; fi

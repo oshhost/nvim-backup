@@ -1,6 +1,7 @@
 silent! call plug#begin('~/.config/nvim/plugged')
-Plug 'mhinz/vim-startify'
+Plug 'fatih/vim-go'
 
+Plug 'mhinz/vim-startify'
 Plug 'bling/vim-bufferline'
 
 Plug 'preservim/nerdtree' |
@@ -15,7 +16,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/nerdcommenter'
-Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-easy-align'
@@ -31,8 +31,33 @@ Plug 'gennaro-tedesco/nvim-peekup'
 Plug 'morhetz/gruvbox'
 
 Plug 'alec-gibson/nvim-tetris'
-
 call plug#end()
+
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+let g:go_jump_to_error = 0
+let g:go_auto_sameids = 0
+let g:go_doc_keywordprg_enabled = 0
+
+let g:go_bin_path = "$HOME/.go"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+autocmd BufEnter *.go nmap <leader>t  <Plug>(go-test)
+autocmd BufEnter *.go nmap <leader>tt <Plug>(go-test-func)
+autocmd BufEnter *.go nmap <leader>c  <Plug>(go-coverage-toggle)
+
+autocmd BufEnter *.go nmap <leader>i  <Plug>(go-info)
+autocmd BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
+autocmd BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
+autocmd BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
 
 lua <<EOF
 local tclose = require('telescope.actions').close
@@ -56,9 +81,9 @@ EOF
 let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-pyright',
-    \ 'coc-go',
     \ 'coc-sh',
-    \ 'coc-calc'
+    \ 'coc-calc',
+    \ 'coc-spell-checker'
   \ ]
 
 let g:gruvbox_italic = 1
@@ -115,6 +140,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <leader>r <Plug>(coc-rename)
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -129,6 +156,9 @@ endfunction
 
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+vmap <leader>a <Plug>(coc-codeaction-selected)<CR>
+nmap <leader>a <Plug>(coc-codeaction-selected)<CR>
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -276,7 +306,7 @@ set laststatus=2
 set ignorecase
 set smartcase
 
-set signcolumn=no
+set signcolumn=number
 set number
 
 set hidden
