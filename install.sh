@@ -14,11 +14,11 @@ mkdir -p ~/.local/share/nvim/site/autoload
 mkdir -p ~/.config/nvim/plugged
 
 getch() {
-        old=$(stty -g 2>/dev/null)
-        stty raw min 0 time 50 2>/dev/null
+	old=$(stty -g 2>/dev/null)
+	stty raw min 0 time 50 2>/dev/null
 	printf %s "$1"
-        eval "$2=\$(dd bs=1 count=1 2>/dev/null)"
-        stty $old 2>/dev/null
+	eval "$2=\$(dd bs=1 count=1 2>/dev/null)"
+	stty $old 2>/dev/null
 	echo
 }
 
