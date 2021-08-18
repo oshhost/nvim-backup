@@ -1,0 +1,39 @@
+{
+  "suggest.noselect": false,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "?",
+  "diagnostic.checkCurrentLine": true,
+  "coc.preferences.hoverTarget": "float",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+	  "go",
+	  "json"
+  ],
+  "go.goplsOptions": {
+    "staticcheck": true
+  },
+  "cSpell.showStatus": false,
+  "cSpell.maxNumberOfProblems": 100,
+  "cSpell.checkLimit": 2048,
+  "cSpell.ignorePaths": [
+		".git"
+  ],
+  "cSpell.spellCheckDelayMs": 750,
+  "cSpell.enabledLanguageIds": [
+    "en",
+    "go",
+    "json",
+    "latex",
+    "markdown",
+    "plaintext",
+    "python",
+    "text"
+  ]
+}
