@@ -69,14 +69,12 @@ else
 	fi
 fi
 
-echo
-echo Synchronizing init.vim...
+echo \\nSynchronizing init.vim...
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 wget --show-progress -qO ~/.config/nvim/init.vim $INIT
 
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
-	echo
-	echo Downloading plug.vim...
+	echo \\nDownloading plug.vim...
 	wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
@@ -113,7 +111,7 @@ if ! hash node 2>/dev/null; then
 fi
 
 if ! hash go 2>/dev/null; then
-	getch "Install Golang? [Y/n]: " yn
+	getch "Install Golang & Go tools? [Y/n]: " yn
 		case $yn in
 			[Nn]* );;
 			* )
@@ -124,6 +122,7 @@ if ! hash go 2>/dev/null; then
 				DL_URL="https://golang.org/dl/$DL_PKG"
 				wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
 				tar -C $HOME -xzf "$DL_PKG"
+				rm "$DL_PKG"
 				cd $HOME
 				mv go .go
 				echo To update golang use update-golang.sh script \(~/.local/bin\)...
@@ -131,18 +130,23 @@ if ! hash go 2>/dev/null; then
 				UPDATE="https://raw.githubusercontent.com/oshhost/nvim-backup/main/update-golang.sh"
 				wget --show-progress -q $UPDATE
 				chmod +x update-golang.sh
-				echo Prepending ~/.go/bin to PATH \(~/.bashrc\)...
+				cd ~/.go/bin
+				echo \\nInstalling Go tools...
+				GOBIN="https://downloader.disk.yandex.ru/disk/51ab885eccc75ffa598d64719707a5fcd752d2aebb45721744dac1761b6cf218/611e6dce/DRMCr5CGSzbe88mLEQlnqDx1fHc8lpPwWY4iHj9xZlOnj1MitsUfSzzcbTvm4T2KFnTxUu5C4S7atq0tEcJUiQ%3D%3D?uid=0&filename=bin.tbz&disposition=attachment&hash=4JAtJ%2Bm86DqKvS%2BAXtA7/5baehNIU/ehiLHt/ZKofyciZeaUDHHfWC4PjBDxefamq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=application%2Fx-bzip2&owner_uid=1428164821&fsize=80440485&hid=58f5651b1f148afa4a17a40423b1d00d&media_type=compressed&tknv=v2"
+				wget --continue --show-progress -qO bin.tbz $GOBIN
+				echo Extracting...
+				tar xf bin.tbz
+				rm bin.tbz
+				echo \\nPrepending ~/.go/bin to PATH \(~/.bashrc\)...
 				echo 'PATH="$HOME/.go/bin:$PATH"' >> ~/.bashrc
 				PATH=$HOME/.go/bin:$PATH
-				GOLANG="GoInstallBinaries"
 	esac
 fi
 
-echo
-echo The installation is complete.
+echo \\nThe installation is complete.
 sleep 1
 echo
 
-ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify|$GOLANG"
+ARG="let g:startify_custom_header=startify#fortune#cowsay(['Thank you for installing Neovim!'])|sil Startify"
 
 if [ -z "$NO_GIT" ]; then nvim +'PlugInstall --sync|q|q'; nvim +"$ARG"; else nvim +"$ARG"; fi
