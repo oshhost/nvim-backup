@@ -73,6 +73,17 @@ echo \\nSynchronizing init.vim...
 INIT="raw.githubusercontent.com/oshhost/nvim-backup/main/init.vim"
 wget --show-progress -qO ~/.config/nvim/init.vim $INIT
 
+if [ -z "$TERMINAL" ]; then
+	echo \\nDetermining the default terminal emulator...
+	for terminal in x-terminal-emulator mate-terminal gnome-terminal terminator xfce4-terminal urxvt rxvt termit Eterm aterm uxterm xterm roxterm termite lxterminal terminology st qterminal lilyterm tilix terminix konsole kitty guake tilda alacritty hyper; do
+		if command -v "$terminal" > /dev/null 2>&1; then
+			echo Setting the enviroment variable TERMINAL to $terminal \(~/.bashrc\)... You might want to change this behaviour manually.
+			echo "TERMINAL=$terminal" >> ~/.bashrc
+			TERMINAL=$terminal
+		fi
+	done
+fi
+
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
 	echo \\nDownloading plug.vim...
 	wget --show-progress -qO ~/.local/share/nvim/site/autoload/plug.vim raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
