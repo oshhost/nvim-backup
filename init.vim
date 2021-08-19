@@ -58,7 +58,7 @@ let g:go_jump_to_error = 0
 let g:go_auto_sameids = 0
 let g:go_doc_keywordprg_enabled = 0
 
-let g:go_bin_path = "$HOME/.go"
+let g:go_bin_path = $HOME . "/.go"
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
