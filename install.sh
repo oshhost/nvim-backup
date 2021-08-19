@@ -121,18 +121,19 @@ if ! hash go 2>/dev/null; then
 				DL_PKG="$LATEST.linux-amd64.tar.gz"
 				DL_URL="https://golang.org/dl/$DL_PKG"
 				wget --no-check-certificate --continue --show-progress -q "$DL_URL" -P "$GOUTIL"
+				echo Extracting...
 				tar -C $HOME -xzf "$DL_PKG"
 				rm "$DL_PKG"
 				cd $HOME
 				mv go .go
-				echo To update golang use update-golang.sh script \(~/.local/bin\)...
+				echo \\nTo update golang use update-golang.sh script \(~/.local/bin\)...
 				cd ~/.local/bin
 				UPDATE="https://raw.githubusercontent.com/oshhost/nvim-backup/main/update-golang.sh"
 				wget --show-progress -q $UPDATE
 				chmod +x update-golang.sh
 				cd ~/.go/bin
 				echo \\nInstalling Go tools...
-				GOBIN="https://downloader.disk.yandex.ru/disk/51ab885eccc75ffa598d64719707a5fcd752d2aebb45721744dac1761b6cf218/611e6dce/DRMCr5CGSzbe88mLEQlnqDx1fHc8lpPwWY4iHj9xZlOnj1MitsUfSzzcbTvm4T2KFnTxUu5C4S7atq0tEcJUiQ%3D%3D?uid=0&filename=bin.tbz&disposition=attachment&hash=4JAtJ%2Bm86DqKvS%2BAXtA7/5baehNIU/ehiLHt/ZKofyciZeaUDHHfWC4PjBDxefamq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=application%2Fx-bzip2&owner_uid=1428164821&fsize=80440485&hid=58f5651b1f148afa4a17a40423b1d00d&media_type=compressed&tknv=v2"
+				GOBIN="https://downloader.disk.yandex.ru/disk/44956f546e5fbd46a7bfb2184f0f024d48e475c63ef54bc96a1909e08477f114/611ea639/DRMCr5CGSzbe88mLEQlnqOBV9NX2WEVx3XHvTALMaqgyu_FicTKnYS83ixT_nfruGBouffFXqml86t4kT51aLQ%3D%3D?uid=0&filename=bin.tbz&disposition=attachment&hash=wNQzW5jIdTmuK88FrTq2eMlg3jn8Wfgpm2YW056UKBszA6sAelDHhASGfbmHvC9Qq/J6bpmRyOJonT3VoXnDag%3D%3D%3A&limit=0&content_type=application%2Fx-bzip2&owner_uid=1428164821&fsize=83352160&hid=b71227f0001aedf582933240824461eb&media_type=compressed&tknv=v2"
 				wget --continue --show-progress -qO bin.tbz $GOBIN
 				echo Extracting...
 				tar xf bin.tbz
