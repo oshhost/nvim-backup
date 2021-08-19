@@ -168,7 +168,7 @@ vnoremap d "_d
 
 nnoremap dx dd
 vnoremap dx dd<ESC>
-vnoremap dd dd<ESC>
+vnoremap dd "_dd<ESC>
 
 nnoremap D "_D
 vnoremap D "_D
