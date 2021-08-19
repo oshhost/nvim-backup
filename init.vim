@@ -57,6 +57,7 @@ let g:go_metalinter_enabled = []
 let g:go_jump_to_error = 0
 let g:go_auto_sameids = 0
 let g:go_doc_keywordprg_enabled = 0
+let g:go_template_use_pkg = 1
 
 let g:go_bin_path = $HOME . "/.go/bin"
 
