@@ -104,7 +104,7 @@ if ! hash node 2>/dev/null; then
 	case $yn in
 		[Nn]* );;
 		* )
-			echo Installing Node.js...
+			echo Installing Node.js... It might take a while.
 			NODE="install-node.vercel.app/lts"
 			wget --show-progress -qO- $NODE | FORCE=1 PREFIX=~/.local bash >/dev/null 2>&1
 	esac
