@@ -1,4 +1,5 @@
 {
+  "signature.maxWindowHeight": 17,
   "suggest.noselect": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "!",
@@ -13,8 +14,8 @@
     }
   },
   "coc.preferences.formatOnSaveFiletypes": [
-	  "go",
-	  "json"
+      "go",
+      "json"
   ],
   "go.goplsOptions": {
     "staticcheck": true
@@ -23,7 +24,7 @@
   "cSpell.maxNumberOfProblems": 100,
   "cSpell.checkLimit": 2048,
   "cSpell.ignorePaths": [
-		".git"
+        ".git"
   ],
   "cSpell.spellCheckDelayMs": 750,
   "cSpell.enabledLanguageIds": [
