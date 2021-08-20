@@ -114,9 +114,9 @@ nmap == <plug>NERDCommenterToggle
 noremap <plug>(slash-after) zz
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
+		\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -127,7 +127,7 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+						\: "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -334,6 +334,8 @@ hi CocHintSign guibg=NONE
 
 hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
+
+command! GoRunForce :!go run %
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
