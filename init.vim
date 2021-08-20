@@ -282,6 +282,8 @@ au BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
 au BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
 au BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
 
+au BufEnter *.go nmap <A-r> :GoRunForce<CR>
+
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|star
 au BufWinLeave,WinLeave term://* stopi
