@@ -70,13 +70,18 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 
+let g:go_snippet_engine = "ultisnips"
+
 let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-pyright',
     \ 'coc-sh',
     \ 'coc-calc',
+	\ 'coc-snippets',
     \ 'coc-spell-checker'
   \ ]
+
+let g:coc_snippet_next = '<tab>'
 
 let g:gruvbox_italic = 1
 
@@ -114,9 +119,10 @@ nmap == <plug>NERDCommenterToggle
 noremap <plug>(slash-after) zz
 
 inoremap <silent><expr> <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ coc#refresh()
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort

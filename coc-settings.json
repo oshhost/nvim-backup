@@ -36,5 +36,6 @@
     "plaintext",
     "python",
     "text"
-  ]
+  ],
+  "snippets.userSnippetsDirectory": "~/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
 }
