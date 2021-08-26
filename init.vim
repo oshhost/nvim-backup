@@ -344,6 +344,10 @@ hi CocWarningSign guifg=Orange
 hi CocInfoSign guifg=Green
 hi CocHintSign guibg=NONE
 
+hi CocFloating guibg=#3C3836
+hi Pmenu guibg=#3C3836
+hi PmenuSbar guibg=#3C3836
+
 hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
