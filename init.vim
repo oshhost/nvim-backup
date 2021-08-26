@@ -287,10 +287,10 @@ au BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
 au BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
 au BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
 
+au BufEnter *.go nmap <leader>gi :GoModInit 
+au BufEnter *.go nmap <leader>gt :GoModTidy<CR>
 au BufEnter *.go nmap <A-r> :GoRun<CR>
 au BufEnter *.go nmap <A-f><A-r> :GoRunForce<CR>
-au BufEnter *.go nmap <A-g><A-i> :GoModInit 
-au BufEnter *.go nmap <A-g><A-t> :GoModTidy<CR>
 au BufEnter *.go nmap <A-i> :GoImpl<CR>
 
 au TermOpen * setlocal nonu
