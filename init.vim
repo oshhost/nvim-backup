@@ -255,7 +255,7 @@ nmap <A-C-Down> <A-C-j>
 nmap <A-C-Up> <A-C-k>
 nmap <A-C-Right> <A-C-l>
 
-nmap <A-i> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
+nmap <C-w><A-n> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
 
 tmap <A-a> <ESC>:e 
 tmap <A-n> <ESC>:bn<CR>
@@ -287,7 +287,11 @@ au BufEnter *.go nmap <leader>ii  <Plug>(go-implements)
 au BufEnter *.go nmap <leader>ci  <Plug>(go-describe)
 au BufEnter *.go nmap <leader>cc  <Plug>(go-callers)
 
-au BufEnter *.go nmap <A-r> :GoRunForce<CR>
+au BufEnter *.go nmap <A-r> :GoRun<CR>
+au BufEnter *.go nmap <A-f><A-r> :GoRunForce<CR>
+au BufEnter *.go nmap <A-g><A-i> :GoModInit 
+au BufEnter *.go nmap <A-g><A-t> :GoModTidy<CR>
+au BufEnter *.go nmap <A-i> :GoImpl<CR>
 
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|star
@@ -344,6 +348,8 @@ hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
 command! GoRunForce :!go run %
+command! -nargs=+ GoModInit :!go mod init <args>
+command! GoModTidy :!go mod tidy
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
