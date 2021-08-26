@@ -169,6 +169,8 @@ inoremap <silent><nowait><expr> <C-a> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-z> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-z>"
 vnoremap <silent><nowait><expr> <C-a> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-a>"
 
+nmap <leader>cr :CocRestart<CR>
+
 nnoremap d "_d
 vnoremap d "_d
 
