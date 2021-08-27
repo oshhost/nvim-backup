@@ -354,11 +354,10 @@ hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
 function! GoModInit( ... )
-	let base = "!go mod init "
 	if a:0 == 0
-		execute base . fnamemodify(getcwd(), ':t')
+		execute "!go mod init " . fnamemodify(getcwd(), ':t')
 	else
-		execute base . join(a:000)
+		execute "!go mod init " . join(a:000)
 	endif
 endfunction
 
