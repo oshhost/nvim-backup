@@ -355,10 +355,11 @@ mat ExtraWhitespace /\s\+$/
 
 function! GoModInit( ... )
 	if a:0 == 0
-		execute "!go mod init " . fnamemodify(getcwd(), ':t')
+		let name = fnamemodify(getcwd(), ':t')
 	else
-		execute "!go mod init " . join(a:000)
+		let name = join(a:000)
 	endif
+	execute "!go mod init " . name
 endfunction
 
 command! GoRunForce :!go run %
