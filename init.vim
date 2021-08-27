@@ -353,8 +353,17 @@ hi PmenuSbar guibg=#3C3836
 hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
+function! GoModInit( ... )
+	let base = "!go mod init "
+	if a:0 == 0
+		execute base . fnamemodify(getcwd(), ':t')
+	else
+		execute base . join(a:000)
+	endif
+endfunction
+
 command! GoRunForce :!go run %
-command! -nargs=+ GoModInit :!go mod init <args>
+command! -nargs=? GoModInit call GoModInit(<f-args>)
 command! GoModTidy :!go mod tidy
 
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
