@@ -145,11 +145,11 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+    exe 'h '.expand('<cword>')
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    exe '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -359,14 +359,15 @@ function! GoModInit( ... )
 	else
 		let name = join(a:000)
 	endif
-	execute "!go mod init " . name
+	exe "!go mod init " . name
+	exe "GoModTidy"
 endfunction
 
 command! GoRunForce :!go run %
 command! -nargs=? GoModInit call GoModInit(<f-args>)
-command! GoModTidy :!go mod tidy
+command! GoModTidy :exe "!go mod tidy" | sil exe "CocRestart"
 
-command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :exe ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
 command! H Telescope help_tags
 command! Q q
