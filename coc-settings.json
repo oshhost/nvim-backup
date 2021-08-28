@@ -20,6 +20,7 @@
   "go.goplsOptions": {
     "staticcheck": true
   },
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "cSpell.showStatus": false,
   "cSpell.maxNumberOfProblems": 100,
   "cSpell.checkLimit": 2048,
