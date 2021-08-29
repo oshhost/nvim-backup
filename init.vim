@@ -293,7 +293,7 @@ au BufEnter *.go nmap <leader>gi :GoModInit
 au BufEnter *.go nmap <leader>gt :GoModTidy<CR>
 au BufEnter *.go nmap <A-r> :GoRun<CR>
 au BufEnter *.go nmap <A-f><A-r> :GoRunForce<CR>
-au BufEnter *.go nmap <A-i> :GoImpl<CR>
+au BufEnter *.go nmap <A-i> :GoImpl 
 
 au TermOpen * setlocal nonu
 au BufWinEnter,WinEnter term://* wa|star
