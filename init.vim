@@ -279,6 +279,8 @@ nnoremap <A-t>v :wa<bar>vs<CR><C-w>l:term<CR>i
 nmap <A-t><A-v> <A-t>v
 nnoremap <A-t>s :wa<bar>sp<CR><C-w>j:term<CR>i
 nmap <A-t><A-s> <A-t>s
+nnoremap <A-t>w :sil !$TERMINAL . &<CR>
+nmap <A-t><A-w> <A-t>w
 
 au BufEnter *.go nmap <leader>t  <Plug>(go-test)
 au BufEnter *.go nmap <leader>tt <Plug>(go-test-func)
