@@ -5,8 +5,8 @@ Plug 'mhinz/vim-startify'
 Plug 'bling/vim-bufferline'
 
 Plug 'preservim/nerdtree' |
-			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
-			\ Plug 'ryanoasis/vim-devicons'
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'mbbill/undotree'
 
@@ -76,7 +76,7 @@ let g:coc_global_extensions = [
     \ 'coc-pyright',
     \ 'coc-sh',
     \ 'coc-calc',
-	\ 'coc-snippets',
+    \ 'coc-snippets',
     \ 'coc-spell-checker'
   \ ]
 
@@ -98,17 +98,18 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:bufferline_rotate = 2
 
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'component_function': {
-	\   'cocstatus': 'coc#status'
-	\ },
-	\ }
+    \ 'colorscheme': 'gruvbox',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status'
+    \ },
+    \ }
 
 au User CocStatusChange,CocDiagnosticChange call lightline#update()
+au CursorHold * silent call CocActionAsync('highlight')
 
 nmap <C-q> :NERDTreeToggle<CR>
 imap <C-q> <C-o>:NERDTreeToggle<CR>
@@ -132,7 +133,7 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-						\: "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+                        \: "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -257,7 +258,7 @@ nmap <A-C-Down> <A-C-j>
 nmap <A-C-Up> <A-C-k>
 nmap <A-C-Right> <A-C-l>
 
-nmap <C-w><A-n> <C-s>:sil !$TERMINAL nvim % &<CR><A-d>
+nmap <C-w><A-n> <C-s>:sil exe "!$TERMINAL nvim +".line('.')." %:p &"<CR><A-d>
 
 tmap <A-a> <ESC>:e 
 tmap <A-n> <ESC>:bn<CR>
@@ -329,6 +330,7 @@ set signcolumn=number
 set number
 
 set hidden
+set shortmess+=c
 
 set autochdir
 set autowrite
@@ -356,13 +358,13 @@ hi ExtraWhitespace guibg=DarkRed
 mat ExtraWhitespace /\s\+$/
 
 function! GoModInit( ... )
-	if a:0 == 0
-		let name = fnamemodify(getcwd(), ':t')
-	else
-		let name = join(a:000)
-	endif
-	exe "!go mod init " . name
-	exe "GoModTidy"
+    if a:0 == 0
+        let name = fnamemodify(getcwd(), ':t')
+    else
+        let name = join(a:000)
+    endif
+    exe "!go mod init " . name
+    exe "GoModTidy"
 endfunction
 
 command! GoRunForce :!go run %
@@ -375,7 +377,7 @@ command! H Telescope help_tags
 
 command! Wq wq
 command! WQ wq
-command! wQ wq
+cabbrev wQ wq
 command! Q q
 command! X x
 
