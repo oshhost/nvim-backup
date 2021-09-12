@@ -372,6 +372,10 @@ command! GoModTidy :exe "!go mod tidy" | sil exe "CocRestart"
 command! W :exe ':silent w !sudo tee % > /dev/null' | :edit!
 command! PlugSync :source $MYVIMRC | :PlugClean | :PlugInstall
 command! H Telescope help_tags
+
+command! Wq wq
+command! WQ wq
+command! wQ wq
 command! Q q
 
 cabbrev S %s
