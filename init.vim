@@ -377,6 +377,7 @@ command! Wq wq
 command! WQ wq
 command! wQ wq
 command! Q q
+command! X x
 
 cabbrev S %s
 cabbrev hes .,$s
