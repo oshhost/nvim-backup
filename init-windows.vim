@@ -147,15 +147,15 @@ vnoremap <silent><nowait><expr> <C-a> coc#float#has_scroll() ? coc#float#scroll(
 
 nmap <leader>cr :CocRestart<CR>
 
-nnoremap d "_d
-vnoremap d "_d
-
 nnoremap dx dd
-vnoremap dx dd<ESC>
-vnoremap dd "_dd<ESC>
+nnoremap dd "_dd
+vnoremap dx dd
+vnoremap dd "_dd
 
-nnoremap D "_D
-vnoremap D "_D
+nnoremap DX D
+vnoremap DX D
+nnoremap DD "_D
+vnoremap DD "_D
 
 nnoremap c "_c
 vnoremap c "_c
