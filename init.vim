@@ -181,6 +181,10 @@ nnoremap DX D
 vnoremap DX D
 nnoremap DD "_D
 vnoremap DD "_D
+nmap Dx DX
+vmap Dx DX
+nmap Dd DD
+vmap Dd DD
 
 nnoremap c "_c
 vnoremap c "_c
