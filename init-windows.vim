@@ -5,7 +5,8 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'mhinz/vim-startify'
 Plug 'bling/vim-bufferline'
 
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'preservim/nerdtree' |
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'mbbill/undotree'
 
@@ -68,8 +69,6 @@ let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 let g:NERDUsePlaceHolders = 0
-
-let g:NERDTreeGitStatusUseNerdFonts = 1
 
 let g:bufferline_rotate = 2
 
