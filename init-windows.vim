@@ -149,8 +149,8 @@ nmap <leader>cr :CocRestart<CR>
 
 nnoremap dx dd
 nnoremap dd "_dd
-vnoremap dx dd<ESC>
-vnoremap dd "_dd<ESC>
+vnoremap dx d
+vnoremap dd "_d
 
 nnoremap DX D
 vnoremap DX D
